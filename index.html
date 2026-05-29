@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Eve's AI Toolkit — May 2026</title>
+<style>
+:root{--bg:#f0f5fa;--surface:#fff;--text:#1a2230;--muted:#4a5568;--accent:#4a90d9;--accent-dark:#3670b0;--border:rgba(0,0,0,0.08);--row-alt:rgba(74,144,217,0.04)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Times New Roman',Times,serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;-webkit-font-smoothing:antialiased}
+.hero-band{background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#f0f5fa;padding:24px 24px 18px;text-align:center}
+.eyebrow{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;opacity:.7;margin-bottom:6px}
+h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.1;letter-spacing:-.01em}
+h1 em{font-weight:400;font-style:italic}
+.sub{font-size:.8rem;font-weight:400;margin-top:6px;opacity:.85}
+.filters{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;margin-top:12px}
+.filter-btn{font-family:'Times New Roman',Times,serif;font-size:.58rem;font-weight:700;padding:4px 10px;border-radius:100px;border:1px solid rgba(255,255,255,.3);background:transparent;color:rgba(240,245,250,.7);cursor:pointer;transition:all .15s ease}
+.filter-btn:hover{border-color:rgba(255,255,255,.6);color:#f0f5fa}
+.filter-btn.active{background:#f0f5fa;border-color:#f0f5fa;color:var(--accent)}
+.content{max-width:960px;margin:0 auto;padding:16px 16px 40px}
+table{width:100%;border-collapse:collapse;background:var(--surface);border-radius:10px;overflow:hidden;border:1px solid var(--border);table-layout:fixed}
+thead th{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-dark);padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);background:var(--bg)}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:var(--row-alt)}
+td{padding:8px 14px;vertical-align:top;font-size:.82rem;line-height:1.55}
+.col-product{width:18%;font-weight:700;font-size:.82rem;border-right:1px solid var(--border)}
+.col-product a{color:var(--text);text-decoration:none;border-bottom:1.5px solid var(--accent)}
+.col-product a:hover{color:var(--accent)}
+.col-usecase{width:20%;font-weight:600;color:var(--text)}
+.col-notes{width:62%;color:var(--text);font-weight:400}
+.col-notes a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+.col-notes a:hover{color:var(--accent-dark)}
+footer{text-align:center;padding:0 16px 28px;font-size:.55rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:640px){.hero-band{padding:18px 14px 14px}.content{padding:10px 8px 28px}table{table-layout:auto}.col-product,.col-usecase,.col-notes{width:auto}td{padding:6px 8px;font-size:.72rem}thead th{padding:8px;font-size:.6rem}}
+</style>
+</head>
+<body>
+<div class="hero-band">
+  <div class="eyebrow">May 2026 · Eve Kazarian</div>
+  <h1>The AI <em>Toolkit</em></h1>
+  <p class="sub">Every use case. The tool I actually reach for.</p>
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+  </div>
+</div>
+<div class="content">
+  <main id="app"></main>
+</div>
+<footer>Curated by Eve · Not sponsored · Opinions update as tools evolve</footer>
+<script>
+const products = [
+  {name:"Claude Code",icon:"🟠",url:"https://claude.ai/code",strengths:[
+    {useCase:"Code Generation & Pair Programming",detail:"Opus 4.6 in high/extra-high mode via the terminal (better than the app). Uses the <a href='https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md' target='_blank'>frontend-design skill</a> for distinctive UI work. Better at actual coding and having an opinion than any other tool. See my <a href='https://github.com/ek0212/agent-ready-repo-kit' target='_blank'>agent-ready-repo-kit</a>."},
+    {useCase:"Custom Newsletter for Trends",detail:"Build your own AI-curated newsletter pipeline with Opus 4.6."}
+  ]},
+  {name:"Claude Chat",icon:"💬",url:"https://claude.ai/",strengths:[
+    {useCase:"Writing & Editing Blog Posts",detail:"Write it yourself first, then edit with Sonnet or Opus. Keeps your voice intact."},
+    {useCase:"Deep Research",detail:"Thorough, well-sourced research with strong reasoning."},
+    {useCase:"Data Analysis & Visualization",detail:"Drop in a spreadsheet and get animated, interactive visualizations inline."}
+  ]},
+  {name:"Claude Design",icon:"🎨",url:"https://claude.ai/",strengths:[
+    {useCase:"Custom UX & Web Design",detail:"Best for making custom, distinctive user interfaces and web components from scratch."},
+    {useCase:"Interactive Visuals & Animations",detail:"Generates design concepts and working code. Pair with <a href='https://www.canva.com/' target='_blank'>Canva</a> for final polish."}
+  ]},
+  {name:"Claude Cowork",icon:"🤝",url:"https://claude.ai/",strengths:[
+    {useCase:"Automated Apple Integrations",detail:"Better Apple app connectors (iMessage, Apple Notes). Cowork scheduled tasks run in a sandboxed environment with local file access but network traffic goes through a proxy that blocks sites like YouTube (yt-dlp gets 403). Best pattern: use local <a href='https://support.apple.com/guide/terminal/script-management-with-launchd-apdc6c1077b-5d5d-4d35-9c19-60f2397b2369/mac' target='_blank'>launchd</a>/cron for deterministic network fetches, then let Cowork handle synthesis, writing, and iMessage delivery after files exist."}
+  ]},
+  {name:"ChatGPT",icon:"🤖",url:"https://chatgpt.com/",strengths:[
+    {useCase:"Debugging & Web Fetching",detail:"GPT-5.5 on extra-high is best for one-shot debugging, fetching repos, and pulling info from the web."},
+    {useCase:"Image Generation",detail:"The style and quality of ChatGPT images feels nicer than alternatives."},
+    {useCase:"Building Custom GPTs",detail:"Pay once to create, then access forever. Similar vibe to chatting with sources in NotebookLM, but easier to find and more comfortable to use. OpenAI products in general have a really nice, minimal UX."},
+    {useCase:"Interior Design",detail:"Upload a photo of your room and ask it to redecorate. Surprisingly good."}
+  ]},
+  {name:"OpenAI Codex",icon:"⚡",url:"https://openai.com/index/introducing-codex/",strengths:[
+    {useCase:"Automating Workflows",detail:"Codex desktop runs with normal network access (no proxy restrictions), so tools like yt-dlp work directly. Unlike Cowork's sandboxed environment, Codex can fetch from YouTube, browse freely, and schedule tasks server-side without needing <a href='https://support.apple.com/guide/terminal/script-management-with-launchd-apdc6c1077b-5d5d-4d35-9c19-60f2397b2369/mac' target='_blank'>launchd</a>."},
+    {useCase:"Task Management & Planning",detail:"Personal second-brain system interfaced through Codex. Inspired by <a href='https://karpathy.ai/' target='_blank'>Karpathy's LLMwiki</a> approach. See my <a href='https://github.com/ek0212/second-brain-template' target='_blank'>second-brain-template</a>."}
+  ]},
+  {name:"NotebookLM",icon:"📓",url:"https://notebooklm.google.com/",strengths:[
+    {useCase:"Making a Podcast",detail:"Best way to turn any content into a conversational podcast automatically."},
+    {useCase:"Summarizing Documents & Books",detail:"Upload anything, especially research papers, and get structured summaries you can explore conversationally."}
+  ]},
+  {name:"Gemini",icon:"💎",url:"https://gemini.google.com/",strengths:[
+    {useCase:"Learning New Skills",detail:"Build a custom GPT for the subject or use Gemini's broad knowledge base."}
+  ]},
+  {name:"Gamma",icon:"🎴",url:"https://gamma.app",strengths:[
+    {useCase:"Quick Presentations",detail:"Fastest free option for turning content into a polished deck."}
+  ]},
+  {name:"Clarity Agent",icon:"🔍",url:"https://github.com/microsoft/clarity-agent",strengths:[
+    {useCase:"Starting New Projects",detail:"Great scaffolding and project initialization workflows."},
+    {useCase:"Stress Testing",detail:"Reliable for stress testing and finding edge cases in projects."}
+  ]},
+  {name:"Wispr Flow",icon:"🎙️",url:"https://www.wispr.ai/",strengths:[
+    {useCase:"Speech to Text",detail:"Best dictation tool for fast, accurate speech-to-text."}
+  ]},
+  {name:"Personal Methods",icon:"✍️",url:null,strengths:[
+    {useCase:"Email Drafting",detail:"Write emails yourself using your own style rules and constraints. Keep it human."},
+    {useCase:"Meeting Notes",detail:"Use whatever is native to your meeting platform."},
+    {useCase:"Travel Planning",detail:"Query Claude, ChatGPT, and Gemini, then compare their top site recommendations."},
+    {useCase:"Recipe Portion Adjustment",detail:"Only useful for adjusting portions or scanning items. Make your own recipes."}
+  ]}
+];
+
+const filters=document.getElementById('filters');
+products.forEach(p=>{const btn=document.createElement('button');btn.className='filter-btn';btn.dataset.filter=p.name;btn.textContent=p.icon+' '+p.name;filters.appendChild(btn)});
+
+filters.addEventListener('click',e=>{const btn=e.target.closest('.filter-btn');if(!btn)return;filters.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render(btn.dataset.filter)});
+
+function render(filter){
+  const app=document.getElementById('app');
+  const visible=filter==='all'?products:products.filter(p=>p.name===filter);
+  let rows='';
+  visible.forEach(product=>{
+    const nameLink=product.url?`<a href="${product.url}" target="_blank" rel="noopener">${product.icon} ${product.name}</a>`:`${product.icon} ${product.name}`;
+    product.strengths.forEach((s,i)=>{
+      const productCell=i===0?`<td class="col-product" rowspan="${product.strengths.length}">${nameLink}</td>`:'';
+      rows+=`<tr>${productCell}<td class="col-usecase">${s.useCase}</td><td class="col-notes">${s.detail}</td></tr>`;
+    });
+  });
+  app.innerHTML=`<table><thead><tr><th class="col-product">Product</th><th class="col-usecase">Use Case</th><th class="col-notes">Notes</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+render('all');
+</script>
+</body>
+</html>
