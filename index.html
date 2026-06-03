@@ -3,124 +3,554 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Eve's AI Toolkit — May 2026</title>
+<title>Eve's AI Guide - June 2026</title>
 <style>
-:root{--bg:#f0f5fa;--surface:#fff;--text:#1a2230;--muted:#4a5568;--accent:#4a90d9;--accent-dark:#3670b0;--border:rgba(0,0,0,0.08);--row-alt:rgba(74,144,217,0.04)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Times New Roman',Times,serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;-webkit-font-smoothing:antialiased}
-.hero-band{background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#f0f5fa;padding:24px 24px 18px;text-align:center}
-.eyebrow{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;opacity:.7;margin-bottom:6px}
-h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.1;letter-spacing:-.01em}
-h1 em{font-weight:400;font-style:italic}
-.sub{font-size:.8rem;font-weight:400;margin-top:6px;opacity:.85}
-.filters{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;margin-top:12px}
-.filter-btn{font-family:'Times New Roman',Times,serif;font-size:.58rem;font-weight:700;padding:4px 10px;border-radius:100px;border:1px solid rgba(255,255,255,.3);background:transparent;color:rgba(240,245,250,.7);cursor:pointer;transition:all .15s ease}
-.filter-btn:hover{border-color:rgba(255,255,255,.6);color:#f0f5fa}
-.filter-btn.active{background:#f0f5fa;border-color:#f0f5fa;color:var(--accent)}
-.content{max-width:960px;margin:0 auto;padding:16px 16px 40px}
-table{width:100%;border-collapse:collapse;background:var(--surface);border-radius:10px;overflow:hidden;border:1px solid var(--border);table-layout:fixed}
-thead th{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-dark);padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);background:var(--bg)}
-tbody tr{border-bottom:1px solid var(--border)}
-tbody tr:last-child{border-bottom:none}
-tbody tr:nth-child(even){background:var(--row-alt)}
-td{padding:8px 14px;vertical-align:top;font-size:.82rem;line-height:1.55}
-.col-product{width:18%;font-weight:700;font-size:.82rem;border-right:1px solid var(--border)}
-.col-product a{color:var(--text);text-decoration:none;border-bottom:1.5px solid var(--accent)}
-.col-product a:hover{color:var(--accent)}
-.col-usecase{width:20%;font-weight:600;color:var(--text)}
-.col-notes{width:62%;color:var(--text);font-weight:400}
-.col-notes a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
-.col-notes a:hover{color:var(--accent-dark)}
-footer{text-align:center;padding:0 16px 28px;font-size:.55rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
-@media(max-width:640px){.hero-band{padding:18px 14px 14px}.content{padding:10px 8px 28px}table{table-layout:auto}.col-product,.col-usecase,.col-notes{width:auto}td{padding:6px 8px;font-size:.72rem}thead th{padding:8px;font-size:.6rem}}
+:root{
+  --bg:#f7f4ee;
+  --ink:#181614;
+  --muted:#6d665d;
+  --line:#d7ccbe;
+  --panel:#fffdf8;
+  --panel-strong:#f0e6d8;
+  --accent:#bd3e2a;
+  --accent-dark:#7f2116;
+  --blue:#235c81;
+  --green:#47735a;
+  --shadow:0 24px 80px rgba(38,29,18,.12);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(189,62,42,.14), transparent 30rem),
+    linear-gradient(180deg,#f7f4ee 0%,#f9f7f2 45%,#eee3d5 100%);
+  color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+.page{max-width:1120px;margin:0 auto;padding:28px 20px 46px}
+.hero{
+  min-height:46vh;
+  display:grid;
+  align-items:end;
+  padding:44px 0 30px;
+  border-bottom:1px solid var(--line);
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,360px);
+  gap:36px;
+  align-items:end;
+}
+.eyebrow{
+  color:var(--accent-dark);
+  font:700 .72rem/1.2 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+h1{
+  margin:12px 0 16px;
+  max-width:760px;
+  font-size:clamp(3.1rem,8vw,7.8rem);
+  line-height:.86;
+  font-weight:500;
+  letter-spacing:0;
+}
+.dek{
+  max-width:660px;
+  margin:0;
+  color:#302a24;
+  font-size:clamp(1.08rem,2vw,1.42rem);
+  line-height:1.42;
+}
+.status-card{
+  background:var(--ink);
+  color:#fff8ed;
+  border-radius:8px;
+  box-shadow:var(--shadow);
+  padding:22px;
+}
+.status-card h2,.status-card p{margin:0}
+.status-card h2{
+  font:800 .76rem/1.2 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#f0c4ac;
+}
+.status-card p{margin-top:14px;font-size:1.06rem;line-height:1.45}
+.jump-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.jump-list a,.filter-btn{
+  min-height:36px;
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,253,248,.7);
+  color:var(--ink);
+  padding:8px 13px;
+  font:700 .76rem/1 ui-sans-serif,system-ui,sans-serif;
+  text-decoration:none;
+}
+.filter-btn{cursor:pointer}
+.filter-btn.active{background:var(--ink);border-color:var(--ink);color:#fff8ed}
+section{padding:36px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px}
+.section-head h2{
+  margin:0;
+  font-size:clamp(1.65rem,3vw,2.5rem);
+  line-height:1;
+  font-weight:500;
+}
+.section-note{margin:0;color:var(--muted);font-size:.95rem;line-height:1.45;max-width:460px}
+.pick-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.pick,.tool,.creator,.source{
+  background:rgba(255,253,248,.82);
+  border:1px solid var(--line);
+  border-radius:8px;
+}
+.pick{padding:18px}
+.pick-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:16px}
+.pick-kicker{
+  color:var(--accent-dark);
+  font:800 .68rem/1.2 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.pick-logo,.tool-logo{
+  width:36px;
+  height:36px;
+  flex:0 0 auto;
+  border-radius:9px;
+  border:1px solid var(--line);
+  background:#fff;
+  object-fit:contain;
+  padding:5px;
+}
+.pick h3{margin:0 0 8px;font-size:1.34rem;line-height:1.08;font-weight:600}
+.pick p,.tool p,.creator p,.timeline-card p,.source p{margin:0;color:#36302a;line-height:1.5}
+.pick .meta{margin-top:13px;color:var(--muted);font-size:.86rem}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+.timeline{position:relative;display:grid;gap:14px}
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:108px;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:var(--line);
+}
+.timeline-item{
+  display:grid;
+  grid-template-columns:88px minmax(0,1fr);
+  gap:40px;
+  position:relative;
+}
+.timeline-date{
+  color:var(--accent-dark);
+  font:800 .74rem/1.25 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding-top:18px;
+  text-align:right;
+}
+.timeline-card{
+  position:relative;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:18px 18px 16px;
+  box-shadow:0 12px 35px rgba(38,29,18,.06);
+}
+.timeline-card::before{
+  content:"";
+  position:absolute;
+  left:-27px;
+  top:22px;
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  background:var(--accent);
+  border:3px solid var(--bg);
+}
+.timeline-card h3{margin:0 0 8px;font-size:1.25rem;line-height:1.18}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}
+.chip{
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--muted);
+  padding:5px 8px;
+  font:700 .66rem/1 ui-sans-serif,system-ui,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+.tool-grid,.creator-grid,.source-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.tool,.creator,.source{padding:16px}
+.tool-head{display:flex;gap:10px;align-items:center;margin-bottom:11px}
+.tool h3,.creator h3,.source h3{margin:0;font-size:1.05rem;line-height:1.16}
+.tool a,.creator a,.source a{
+  display:inline-flex;
+  margin-top:12px;
+  color:var(--accent-dark);
+  font:800 .73rem/1 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border-bottom:1px solid currentColor;
+}
+.creator-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.creator{background:#fff8ed}
+.source-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.source{background:rgba(240,230,216,.65)}
+.last-section{border-bottom:0}
+footer{
+  padding-top:16px;
+  color:var(--muted);
+  font:700 .72rem/1.5 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.hide{display:none}
+@media(max-width:860px){
+  .page{padding:18px 14px 34px}
+  .hero{min-height:auto;padding:34px 0 22px}
+  .hero-grid,.pick-grid,.tool-grid,.creator-grid,.source-grid{grid-template-columns:1fr}
+  .status-card{max-width:none}
+  .section-head{display:block}
+  .section-note{margin-top:10px}
+  .timeline::before{left:10px}
+  .timeline-item{grid-template-columns:1fr;gap:6px;padding-left:30px}
+  .timeline-date{text-align:left;padding-top:0}
+  .timeline-card::before{left:-27px}
+}
+@media(max-width:520px){
+  h1{font-size:clamp(2.55rem,16vw,4.2rem)}
+  .jump-list a,.filter-btn{width:100%;justify-content:center}
+  .pick,.tool,.creator,.source,.timeline-card{padding:15px}
+}
 </style>
 </head>
 <body>
-<div class="hero-band">
-  <div class="eyebrow">May 2026 · Eve Kazarian</div>
-  <h1>The AI <em>Toolkit</em></h1>
-  <p class="sub">Every use case. The tool I actually reach for.</p>
-  <div class="filters" id="filters">
-    <button class="filter-btn active" data-filter="all">All</button>
-  </div>
+<div class="page">
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Eve Kazarian - checked June 3, 2026</div>
+        <h1>The AI Guide</h1>
+        <p class="dek">A living timeline of the tools I actually reach for, with current model defaults at the top and creator references at the bottom.</p>
+        <nav class="jump-list" aria-label="Page sections">
+          <a href="#current">Current stack</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#tools">Tool shelf</a>
+          <a href="#creators">YouTubers</a>
+          <a href="#sources">Sources</a>
+        </nav>
+      </div>
+      <aside class="status-card" aria-label="Current recommendation">
+        <h2>Right now</h2>
+        <p>Code in Codex with GPT-5.5 and use xhigh effort when the task is hard. Write in Claude Sonnet when speed matters and Claude Opus when thoroughness matters.</p>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="current">
+      <div class="section-head">
+        <h2>Current Stack</h2>
+        <p class="section-note">These are personal defaults, not universal rankings. Pricing and model access should be rechecked before citing.</p>
+      </div>
+      <div class="pick-grid" id="picks"></div>
+    </section>
+
+    <section id="timeline">
+      <div class="section-head">
+        <h2>Timeline</h2>
+        <p class="section-note">Newest first. Use the filters to separate personal choices from provider release notes.</p>
+      </div>
+      <div class="controls" id="filters" aria-label="Timeline filters">
+        <button class="filter-btn active" type="button" data-filter="all">All</button>
+        <button class="filter-btn" type="button" data-filter="current">Current</button>
+        <button class="filter-btn" type="button" data-filter="coding">Coding</button>
+        <button class="filter-btn" type="button" data-filter="writing">Writing</button>
+        <button class="filter-btn" type="button" data-filter="release">Releases</button>
+      </div>
+      <div class="timeline" id="timeline-list"></div>
+    </section>
+
+    <section id="tools">
+      <div class="section-head">
+        <h2>Tool Shelf</h2>
+        <p class="section-note">The older table is now condensed into use-case cards so the timeline can stay primary.</p>
+      </div>
+      <div class="tool-grid" id="tools-list"></div>
+    </section>
+
+    <section id="creators">
+      <div class="section-head">
+        <h2>Favorite YouTubers</h2>
+        <p class="section-note">Seeded from notes already in the vault. Keep this list personal and prune it when tastes change.</p>
+      </div>
+      <div class="creator-grid" id="creators-list"></div>
+    </section>
+
+    <section id="sources" class="last-section">
+      <div class="section-head">
+        <h2>Sources</h2>
+        <p class="section-note">Used for the current model and pricing claims on this page.</p>
+      </div>
+      <div class="source-grid" id="sources-list"></div>
+    </section>
+  </main>
+
+  <footer>Curated by Eve - personal guide, not sponsored</footer>
 </div>
-<div class="content">
-  <main id="app"></main>
-</div>
-<footer>Curated by Eve · Not sponsored · Opinions update as tools evolve</footer>
+
 <script>
-const products = [
-  {name:"Claude Code",icon:"🟠",url:"https://claude.ai/code",strengths:[
-    {useCase:"Code Generation & Pair Programming",detail:"Opus 4.6 in high mode via the terminal (better than the app). Uses the <a href='https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md' target='_blank'>frontend-design skill</a> for distinctive UI work. Better at actual coding and having an opinion than any other tool. See my <a href='https://github.com/ek0212/agent-ready-repo-kit' target='_blank'>agent-ready-repo-kit</a>."},
-    {useCase:"Custom Newsletter for Trends",detail:"Build your own AI-curated newsletter pipeline with Opus 4.6."}
-  ]},
-  {name:"Claude Chat",icon:"💬",url:"https://claude.ai/",strengths:[
-    {useCase:"Writing & Editing Blog Posts",detail:"Write it yourself first, then edit with Sonnet or Opus. Keeps your voice intact."},
-    {useCase:"Deep Research",detail:"Thorough, well-sourced research with strong reasoning."},
-    {useCase:"Data Analysis & Visualization",detail:"Drop in a spreadsheet and get animated, interactive visualizations inline."}
-  ]},
-  {name:"Claude Design",icon:"🎨",url:"https://claude.ai/",strengths:[
-    {useCase:"Custom UX & Web Design",detail:"Best for making custom, distinctive user interfaces and web components from scratch."},
-    {useCase:"Interactive Visuals & Animations",detail:"Generates design concepts and working code. Pair with <a href='https://www.canva.com/' target='_blank'>Canva</a> for final polish."}
-  ]},
-  {name:"Claude Cowork",icon:"🤝",url:"https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork",strengths:[
-    {useCase:"Automated Apple Integrations",detail:"Better Apple app connectors (iMessage, Apple Notes). Cowork scheduled tasks run in a sandboxed environment with local file access but network traffic goes through a proxy that blocks sites like YouTube (yt-dlp gets 403). Best pattern: use local <a href='https://support.apple.com/guide/terminal/script-management-with-launchd-apdc6c1077b-5d5d-4d35-9c19-60f2397b2369/mac' target='_blank'>launchd</a>/cron for deterministic network fetches, then let Cowork handle synthesis, writing, and iMessage delivery after files exist."}
-  ]},
-  {name:"ChatGPT",icon:"🤖",url:"https://chatgpt.com/",strengths:[
-    {useCase:"Debugging & Web Fetching",detail:"GPT-5.5 on extra-high is best for one-shot debugging, fetching repos, and pulling info from the web."},
-    {useCase:"Image Generation",detail:"The style and quality of ChatGPT images feels nicer than alternatives."},
-    {useCase:"Building Custom GPTs",detail:"Pay once to create, then access forever. Similar vibe to chatting with sources in NotebookLM, but easier to find and more comfortable to use. OpenAI products in general have a really nice, minimal UX."},
-    {useCase:"Interior Design",detail:"Upload a photo of your room and ask it to redecorate. Surprisingly good."}
-  ]},
-  {name:"OpenAI Codex",icon:"⚡",url:"https://openai.com/index/introducing-codex/",strengths:[
-    {useCase:"Automating Workflows",detail:"Codex desktop runs with normal network access (no proxy restrictions), so tools like yt-dlp work directly. Unlike Cowork's sandboxed environment, Codex can fetch from YouTube, browse freely, and schedule tasks server-side without needing <a href='https://support.apple.com/guide/terminal/script-management-with-launchd-apdc6c1077b-5d5d-4d35-9c19-60f2397b2369/mac' target='_blank'>launchd</a>."},
-    {useCase:"Task Management & Planning",detail:"Personal second-brain system interfaced through Codex. Inspired by <a href='https://karpathy.ai/' target='_blank'>Karpathy's LLMwiki</a> approach. See my <a href='https://github.com/ek0212/second-brain-template' target='_blank'>second-brain-template</a>."}
-  ]},
-  {name:"NotebookLM",icon:"📓",url:"https://notebooklm.google.com/",strengths:[
-    {useCase:"Making a Podcast",detail:"Best way to turn any content into a conversational podcast automatically."},
-    {useCase:"Summarizing Documents & Books",detail:"Upload anything, especially research papers, and get structured summaries you can explore conversationally."}
-  ]},
-  {name:"Gemini",icon:"💎",url:"https://gemini.google.com/",strengths:[
-    {useCase:"Learning New Skills",detail:"Build a custom GPT for the subject or use Gemini's broad knowledge base."}
-  ]},
-  {name:"Gamma",icon:"🎴",url:"https://gamma.app",strengths:[
-    {useCase:"Quick Presentations",detail:"Fastest free option for turning content into a polished deck."}
-  ]},
-  {name:"Clarity Agent",icon:"🔍",url:"https://github.com/microsoft/clarity-agent",strengths:[
-    {useCase:"Starting New Projects",detail:"Great scaffolding and project initialization workflows."},
-    {useCase:"Stress Testing",detail:"Reliable for stress testing and finding edge cases in projects."}
-  ]},
-  {name:"Wispr Flow",icon:"🎙️",url:"https://www.wispr.ai/",strengths:[
-    {useCase:"Speech to Text",detail:"Best dictation tool for fast, accurate speech-to-text."}
-  ]},
-  {name:"Personal Methods",icon:"✍️",url:null,strengths:[
-    {useCase:"Email Drafting",detail:"Write emails yourself using your own style rules and constraints. Keep it human."},
-    {useCase:"Meeting Notes",detail:"Use whatever is native to your meeting platform."},
-    {useCase:"Travel Planning",detail:"Query Claude, ChatGPT, and Gemini, then compare their top site recommendations."},
-    {useCase:"Recipe Portion Adjustment",detail:"Only useful for adjusting portions or scanning items. Make your own recipes."}
-  ]}
+const favicon = domain => `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+
+const picks = [
+  {
+    label:"Coding",
+    title:"Codex + GPT-5.5 xhigh",
+    text:"Default for real repo work, debugging, tests, and multi-step implementation. Use xhigh for hard problems, migrations, and ambiguous failures.",
+    meta:"OpenAI lists GPT-5.5 as a frontier model for complex professional work with xhigh effort support.",
+    domain:"openai.com"
+  },
+  {
+    label:"Fast writing",
+    title:"Claude Sonnet 4.6",
+    text:"Use for quick drafts, rewrites, everyday editing, and style cleanup when speed matters more than exhaustive analysis.",
+    meta:"Sonnet 4.6 is the current Sonnet line and is priced at $3 input / $15 output per MTok.",
+    domain:"anthropic.com"
+  },
+  {
+    label:"Thorough writing",
+    title:"Claude Opus 4.8",
+    text:"Use for longer essays, high-stakes narrative work, deep research synthesis, docs, slides, and careful review.",
+    meta:"Opus 4.8 defaults to high effort. Extra/xhigh is the hard-task mode.",
+    domain:"anthropic.com"
+  }
 ];
 
-const filters=document.getElementById('filters');
-products.forEach(p=>{const btn=document.createElement('button');btn.className='filter-btn';btn.dataset.filter=p.name;btn.textContent=p.icon+' '+p.name;filters.appendChild(btn)});
+const timeline = [
+  {
+    date:"Jun 3, 2026",
+    title:"Current personal default",
+    text:"Coding defaults to Codex with GPT-5.5 at xhigh effort. Writing defaults to Claude Sonnet for speed and Claude Opus for thoroughness. The guide should stay a dated timeline, not a static best-tools table.",
+    tags:["current","coding","writing"]
+  },
+  {
+    date:"May 28, 2026",
+    title:"Claude Opus 4.8 becomes the current Opus line",
+    text:"Opus 4.8 is the thorough Claude pick. Anthropic says high effort is the default balance, while extra/xhigh and max spend more tokens for harder or longer-running tasks. Regular API pricing stays $5 input / $25 output per MTok, unchanged from Opus 4.7.",
+    tags:["release","writing","coding"]
+  },
+  {
+    date:"Apr 24, 2026",
+    title:"GPT-5.5 reaches the API",
+    text:"OpenAI's model page lists GPT-5.5 at $5 input / $30 output per MTok with a 1,050,000-token context window and support for none, low, medium, high, and xhigh reasoning effort. This is the model to pair with Codex for the hardest coding work.",
+    tags:["release","coding"]
+  },
+  {
+    date:"Apr 23, 2026",
+    title:"GPT-5.5 rolls out to ChatGPT and Codex",
+    text:"OpenAI's release post positions GPT-5.5 for agentic coding, computer use, and knowledge work. It notes Codex availability and says GPT-5.5 is tuned to deliver better results with fewer tokens than GPT-5.4 for most Codex users.",
+    tags:["release","coding"]
+  },
+  {
+    date:"Apr 16, 2026",
+    title:"Claude Opus 4.7 improves the Opus line",
+    text:"Anthropic described Opus 4.7 as a direct upgrade to Opus 4.6. Pricing stayed at $5 input / $25 output per MTok, but Anthropic warned that the tokenizer and higher-effort thinking could change token usage.",
+    tags:["release","coding","writing"]
+  },
+  {
+    date:"Feb 17, 2026",
+    title:"Claude Sonnet 4.6 is the fast Claude workhorse",
+    text:"Sonnet 4.6 is the fast everyday choice for writing and many coding-adjacent tasks. Anthropic lists it at $3 input / $15 output per MTok and positions it as a strong, lower-cost model for real work.",
+    tags:["release","writing","coding"]
+  },
+  {
+    date:"Feb 5, 2026",
+    title:"Claude Opus 4.6 sets the recent Opus price baseline",
+    text:"Opus 4.6 launched at $5 input / $25 output per MTok. Opus 4.7 and Opus 4.8 kept the same regular pricing, so 4.6, 4.7, and 4.8 are comparable on listed base price even when token usage changes.",
+    tags:["release","writing"]
+  }
+];
 
-filters.addEventListener('click',e=>{const btn=e.target.closest('.filter-btn');if(!btn)return;filters.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render(btn.dataset.filter)});
+const tools = [
+  {
+    name:"OpenAI Codex",
+    domain:"openai.com",
+    text:"Best for local coding work, verification loops, broad refactors, and tasks that need normal shell and network access.",
+    url:"https://developers.openai.com/codex"
+  },
+  {
+    name:"Claude",
+    domain:"anthropic.com",
+    text:"Best writing partner. Use Sonnet for fast drafts and Opus for thorough, careful work.",
+    url:"https://claude.ai/"
+  },
+  {
+    name:"ChatGPT",
+    domain:"chatgpt.com",
+    text:"Use for image generation, debugging bursts, broad web synthesis, custom GPTs, and visual ideation.",
+    url:"https://chatgpt.com/"
+  },
+  {
+    name:"NotebookLM",
+    domain:"notebooklm.google.com",
+    text:"Use for source-grounded document Q&A, paper summaries, book notes, and quick podcast-style audio.",
+    url:"https://notebooklm.google.com/"
+  },
+  {
+    name:"Gamma",
+    domain:"gamma.app",
+    text:"Fastest path from rough content to a presentable deck when polish matters more than full control.",
+    url:"https://gamma.app/"
+  },
+  {
+    name:"Wispr Flow",
+    domain:"wispr.ai",
+    text:"Keep for dictation and speech-to-text when typing would slow the thought down.",
+    url:"https://www.wispr.ai/"
+  },
+  {
+    name:"Claude Cowork",
+    domain:"anthropic.com",
+    text:"Good for synthesis and writing around Apple workflows after deterministic fetching or local prep is done.",
+    url:"https://claude.ai/"
+  },
+  {
+    name:"Personal methods",
+    domain:"ek0212.github.io",
+    text:"Write personal emails yourself, compare models for travel planning, and use AI for recipe scaling instead of recipe invention.",
+    url:"https://ek0212.github.io/eves-ai-guide/"
+  }
+];
 
-function render(filter){
-  const app=document.getElementById('app');
-  const visible=filter==='all'?products:products.filter(p=>p.name===filter);
-  let rows='';
-  visible.forEach(product=>{
-    const nameLink=product.url?`<a href="${product.url}" target="_blank" rel="noopener">${product.icon} ${product.name}</a>`:`${product.icon} ${product.name}`;
-    product.strengths.forEach((s,i)=>{
-      const productCell=i===0?`<td class="col-product" rowspan="${product.strengths.length}">${nameLink}</td>`:'';
-      rows+=`<tr>${productCell}<td class="col-usecase">${s.useCase}</td><td class="col-notes">${s.detail}</td></tr>`;
-    });
-  });
-  app.innerHTML=`<table><thead><tr><th class="col-product">Product</th><th class="col-usecase">Use Case</th><th class="col-notes">Notes</th></tr></thead><tbody>${rows}</tbody></table>`;
+const creators = [
+  {
+    name:"Andrej Karpathy",
+    text:"Deep AI and coding fundamentals from first principles.",
+    url:"https://www.youtube.com/@AndrejKarpathy"
+  },
+  {
+    name:"Fireship",
+    text:"Fast developer explainers and tech context.",
+    url:"https://www.youtube.com/@Fireship"
+  },
+  {
+    name:"Tina Huang",
+    text:"AI, data, learning, and career-oriented walkthroughs.",
+    url:"https://www.youtube.com/@TinaHuang1"
+  },
+  {
+    name:"Peter Akkies",
+    text:"Apple productivity systems and reminders workflows.",
+    url:"https://www.youtube.com/@PeterAkkies"
+  }
+];
+
+const sources = [
+  {
+    name:"OpenAI GPT-5.5 model page",
+    text:"Reasoning effort, context, and API token pricing.",
+    url:"https://developers.openai.com/api/docs/models/gpt-5.5/"
+  },
+  {
+    name:"OpenAI GPT-5.5 release",
+    text:"Codex availability and positioning for coding and knowledge work.",
+    url:"https://openai.com/index/introducing-gpt-5-5/"
+  },
+  {
+    name:"OpenAI pricing",
+    text:"Current standard, batch, flex, and priority pricing table.",
+    url:"https://developers.openai.com/api/docs/pricing"
+  },
+  {
+    name:"Anthropic Opus 4.8",
+    text:"Availability, pricing, effort defaults, and fast mode.",
+    url:"https://www.anthropic.com/news/claude-opus-4-8"
+  },
+  {
+    name:"Anthropic Opus 4.7",
+    text:"Pricing continuity from Opus 4.6 and migration notes.",
+    url:"https://www.anthropic.com/news/claude-opus-4-7"
+  },
+  {
+    name:"Anthropic Sonnet 4.6",
+    text:"Current Sonnet model details and $3/$15 listed pricing.",
+    url:"https://www.anthropic.com/claude/sonnet"
+  }
+];
+
+function renderPicks(){
+  const root=document.getElementById("picks");
+  root.innerHTML=picks.map(p=>`
+    <article class="pick">
+      <div class="pick-top">
+        <div class="pick-kicker">${p.label}</div>
+        <img class="pick-logo" src="${favicon(p.domain)}" alt="">
+      </div>
+      <h3>${p.title}</h3>
+      <p>${p.text}</p>
+      <p class="meta">${p.meta}</p>
+    </article>
+  `).join("");
 }
 
-render('all');
+function renderTimeline(filter="all"){
+  const root=document.getElementById("timeline-list");
+  root.innerHTML=timeline.map(item=>{
+    const visible=filter==="all"||item.tags.includes(filter);
+    return `
+      <article class="timeline-item ${visible?"":"hide"}">
+        <time class="timeline-date">${item.date}</time>
+        <div class="timeline-card">
+          <h3>${item.title}</h3>
+          <p>${item.text}</p>
+          <div class="chips">${item.tags.map(tag=>`<span class="chip">${tag}</span>`).join("")}</div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function renderCardList(id, items, className, withLogo=false){
+  const root=document.getElementById(id);
+  root.innerHTML=items.map(item=>`
+    <article class="${className}">
+      ${withLogo?`<div class="tool-head"><img class="tool-logo" src="${favicon(item.domain)}" alt=""><h3>${item.name}</h3></div>`:`<h3>${item.name}</h3>`}
+      <p>${item.text}</p>
+      <a href="${item.url}" target="_blank" rel="noopener">Open</a>
+    </article>
+  `).join("");
+}
+
+document.getElementById("filters").addEventListener("click",event=>{
+  const button=event.target.closest("button");
+  if(!button)return;
+  document.querySelectorAll(".filter-btn").forEach(btn=>btn.classList.remove("active"));
+  button.classList.add("active");
+  renderTimeline(button.dataset.filter);
+});
+
+renderPicks();
+renderTimeline();
+renderCardList("tools-list",tools,"tool",true);
+renderCardList("creators-list",creators,"creator");
+renderCardList("sources-list",sources,"source");
 </script>
 </body>
 </html>

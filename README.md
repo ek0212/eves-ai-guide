@@ -1,30 +1,20 @@
-# Favorite Coding Tools — Viewer
+# Eve's AI Guide
 
-A small static HTML viewer to browse your favorite coding tools by use case and tags.
+A static personal AI guide published at <https://ek0212.github.io/eves-ai-guide/>.
 
-Quick start
+The site is a single file:
 
-- Open `index.html` in a modern browser.
-- Or run a simple HTTP server (recommended) from the project root:
+- `index.html` - layout, styles, timeline data, tool shelf, creator list, and source links.
+
+## Update Flow
+
+1. Edit the data arrays in `index.html`.
+2. Update the checked date in the page title and hero eyebrow.
+3. Recheck model access, pricing, and effort claims against source links before publishing.
+4. Verify locally:
 
 ```bash
-# Python 3
-python -m http.server 8000
-# then open http://localhost:8000
+python3 -m http.server 8000
 ```
 
-What I included
-
-- `index.html` — main UI
-- `css/styles.css` — styling
-- `js/app.js` — simple data loader and filters
-- `data/tools.json` — sample tool data you can edit
-
-Next steps you might want me to do
-
-- Add sorting and saved favorites
-- Add per-tool detailed pages or modal
-- Integrate a tiny admin UI to edit `data/tools.json` in-browser
-- Package as an NPM project and add a dev server
-
-If you want any of the above, tell me which one to implement next.
+Then open <http://localhost:8000>.
