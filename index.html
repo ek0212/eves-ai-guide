@@ -4,16 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Eve's AI Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f7f4ee;
-  --ink:#181614;
-  --muted:#665d53;
-  --line:#d8cbbb;
-  --panel:#fffdf8;
-  --soft:#f0e6d8;
-  --accent:#9f2d20;
-  --shadow:0 18px 60px rgba(38,29,18,.1);
+  --bg:#f6f1e5;
+  --ink:#181d2c;
+  --muted:#5a5a6b;
+  --line:#e3d9c2;
+  --panel:#fbf6e8;
+  --soft:#efe5cd;
+  --accent:#c2410c;
+  --accent-soft:#fed7aa;
+  --display:"Fraunces",Georgia,"Iowan Old Style",serif;
+  --body:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --shadow:0 18px 60px rgba(24,29,44,.08);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -21,11 +28,15 @@ body{
   margin:0;
   min-height:100vh;
   background:
-    radial-gradient(circle at 12% 0%, rgba(159,45,32,.13), transparent 28rem),
-    linear-gradient(180deg,#f7f4ee 0%,#fbf8f1 48%,#eee2d2 100%);
+    radial-gradient(circle at 92% 0%, rgba(194,65,12,.10), transparent 32rem),
+    radial-gradient(circle at 8% 100%, rgba(24,29,44,.08), transparent 30rem),
+    linear-gradient(180deg,#f6f1e5 0%,#f8f3e8 55%,#efe5cd 100%);
   color:var(--ink);
-  font-family:Georgia,"Times New Roman",serif;
+  font-family:var(--body);
+  font-size:16.5px;
+  line-height:1.55;
   -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
 a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
 .page{max-width:1080px;margin:0 auto;padding:30px 20px 46px}
@@ -35,20 +46,28 @@ a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
 }
 .eyebrow{
   color:var(--accent);
-  font:800 .72rem/1.2 ui-sans-serif,system-ui,sans-serif;
+  font:700 .72rem/1.2 var(--body);
   letter-spacing:.14em;
   text-transform:uppercase;
 }
 h1{
   margin:10px 0 22px;
-  font-size:clamp(2.6rem,6.4vw,5.4rem);
+  font-family:var(--display);
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(2.6rem,6.4vw,5.2rem);
   line-height:.92;
   font-weight:500;
-  letter-spacing:0;
+  letter-spacing:-.022em;
+  color:var(--ink);
+}
+.section-head h2{
+  font-family:var(--display);
+  font-variation-settings:"opsz" 80;
+  letter-spacing:-.015em;
 }
 .now{
   background:var(--ink);
-  color:#fff8ed;
+  color:#fbf6e8;
   border-radius:10px;
   box-shadow:var(--shadow);
   padding:18px 22px;
@@ -58,11 +77,11 @@ h1{
   align-items:start;
 }
 .now-label{
-  color:#f0c4ac;
-  font:800 .72rem/1.2 ui-sans-serif,system-ui,sans-serif;
+  color:var(--accent-soft);
+  font:700 .7rem/1.2 ui-sans-serif,system-ui,sans-serif;
   letter-spacing:.14em;
   text-transform:uppercase;
-  padding-top:3px;
+  padding-top:4px;
   white-space:nowrap;
 }
 .now-list{
@@ -70,11 +89,11 @@ h1{
   padding:0;
   list-style:none;
   display:grid;
-  gap:6px;
-  font-size:1rem;
-  line-height:1.4;
+  gap:7px;
+  font-size:.98rem;
+  line-height:1.45;
 }
-.now-list strong{color:#f0c4ac;font-weight:700}
+.now-list strong{color:var(--accent-soft);font-weight:600}
 .nav{
   display:flex;
   flex-wrap:wrap;
@@ -87,7 +106,7 @@ h1{
   align-items:center;
   border:1px solid var(--line);
   border-radius:999px;
-  background:rgba(255,253,248,.78);
+  background:rgba(251,246,232,.78);
   color:var(--ink);
   padding:6px 12px;
   font:800 .72rem/1 ui-sans-serif,system-ui,sans-serif;
@@ -106,7 +125,7 @@ section:last-of-type{border-bottom:0}
   border:1px solid var(--line);
   border-radius:8px;
   overflow:hidden;
-  box-shadow:0 12px 35px rgba(38,29,18,.06);
+  box-shadow:0 12px 35px rgba(24,29,44,.08);
 }
 table{width:100%;border-collapse:collapse}
 th{
@@ -114,7 +133,7 @@ th{
   color:var(--accent);
   text-align:left;
   padding:11px 14px;
-  font:800 .7rem/1.2 ui-sans-serif,system-ui,sans-serif;
+  font:700 .7rem/1.2 var(--body);
   letter-spacing:.1em;
   text-transform:uppercase;
 }
@@ -129,10 +148,25 @@ td:first-child{width:24%;font-weight:700}
 td:nth-child(2){width:46%}
 td:nth-child(3){width:30%}
 .tool-name{
-  display:block;
+  display:flex;
+  align-items:center;
+  gap:7px;
   font-weight:700;
   font-size:1rem;
   margin-bottom:3px;
+}
+.tool-logo{
+  width:18px;
+  height:18px;
+  border-radius:4px;
+  background:#fff;
+  flex-shrink:0;
+  object-fit:contain;
+}
+.use-emoji{
+  display:inline-block;
+  margin-right:6px;
+  font-size:1.05em;
 }
 .why{
   display:block;
@@ -151,9 +185,9 @@ td:nth-child(3){width:30%}
   padding:5px 10px;
   border:1px solid var(--line);
   border-radius:999px;
-  background:rgba(255,253,248,.78);
+  background:rgba(251,246,232,.78);
   color:var(--ink);
-  font:800 .7rem/1 ui-sans-serif,system-ui,sans-serif;
+  font:700 .7rem/1 var(--body);
   letter-spacing:.06em;
   text-transform:uppercase;
 }
@@ -165,7 +199,7 @@ td:nth-child(3){width:30%}
 .timeline-step{
   flex:1 1 0;
   min-width:180px;
-  background:rgba(255,253,248,.84);
+  background:rgba(251,246,232,.84);
   border:1px solid var(--line);
   border-radius:8px;
   padding:10px 12px;
@@ -173,7 +207,7 @@ td:nth-child(3){width:30%}
 .timeline-step time{
   display:block;
   color:var(--accent);
-  font:800 .68rem/1.2 ui-sans-serif,system-ui,sans-serif;
+  font:700 .68rem/1.2 var(--body);
   letter-spacing:.1em;
   text-transform:uppercase;
   margin-bottom:4px;
@@ -191,33 +225,52 @@ td:nth-child(3){width:30%}
 }
 .creator-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
 .note-card,.creator-card{
-  background:rgba(255,253,248,.84);
+  background:rgba(251,246,232,.84);
   border:1px solid var(--line);
   border-radius:8px;
   padding:14px;
 }
 .note-card h3,.creator-card h3{
   margin:0 0 6px;
-  font-size:1rem;
-  line-height:1.2;
+  font-family:var(--display);
+  font-variation-settings:"opsz" 40;
+  font-size:1.08rem;
+  line-height:1.18;
+  font-weight:600;
+  letter-spacing:-.008em;
+}
+.timeline-step h3{
+  font-family:var(--display);
+  font-variation-settings:"opsz" 40;
+  letter-spacing:-.005em;
 }
 .note-card p,.creator-card p{
   margin:0;
-  color:#38312b;
+  color:#2c2e3d;
   font-size:.9rem;
   line-height:1.45;
 }
+.note-card code,.now code{
+  font-family:var(--mono);
+  font-size:.82em;
+  background:rgba(194,65,12,.10);
+  color:var(--accent);
+  padding:1px 5px;
+  border-radius:4px;
+  word-break:break-word;
+}
+.now code{background:rgba(254,215,170,.12);color:var(--accent-soft)}
 .creator-card a{
   display:inline-flex;
   margin-top:8px;
-  font:800 .7rem/1 ui-sans-serif,system-ui,sans-serif;
+  font:700 .7rem/1 var(--body);
   letter-spacing:.07em;
   text-transform:uppercase;
 }
 footer{
   padding-top:18px;
   color:var(--muted);
-  font:800 .72rem/1.5 ui-sans-serif,system-ui,sans-serif;
+  font:700 .72rem/1.5 var(--body);
   letter-spacing:.08em;
   text-transform:uppercase;
 }
@@ -240,7 +293,7 @@ footer{
     border:1px solid var(--line);
     border-radius:8px;
     margin-bottom:10px;
-    box-shadow:0 12px 35px rgba(38,29,18,.06);
+    box-shadow:0 12px 35px rgba(24,29,44,.08);
   }
   td{
     width:100% !important;
@@ -254,7 +307,7 @@ footer{
     display:block;
     margin-bottom:5px;
     color:var(--accent);
-    font:800 .66rem/1.2 ui-sans-serif,system-ui,sans-serif;
+    font:700 .66rem/1.2 var(--body);
     letter-spacing:.1em;
     text-transform:uppercase;
   }
@@ -269,8 +322,8 @@ footer{
     <div class="now" aria-label="Current defaults">
       <span class="now-label">Now</span>
       <ul class="now-list">
-        <li><strong>Coding:</strong> Claude Opus in Claude Code</li>
-        <li><strong>Prototyping &amp; automations:</strong> Codex + GPT-5.5 high</li>
+        <li><strong>Coding:</strong> Alternate between Opus latest in Claude Code CLI and Codex + GPT latest high</li>
+        <li><strong>Prototyping &amp; automations:</strong> Codex + GPT latest high</li>
         <li><strong>Writing:</strong> Claude Sonnet fast, Claude Opus deep</li>
         <li><strong>Research &amp; learning:</strong> NotebookLM for sources, Claude for synthesis</li>
       </ul>
@@ -294,17 +347,17 @@ footer{
             <tr>
               <th>Use case</th>
               <th>Tool</th>
-              <th>Open</th>
+              <th>Links</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td data-label="Use case">Coding, debugging, repo work</td>
+              <td data-label="Use case"><span class="use-emoji">🛠️</span>Coding, debugging, repo work</td>
               <td data-label="Tool">
-                <span class="tool-name">Claude Code CLI + Opus</span>
-                <span class="why">Opus reasoning on real repo changes; large context holds across source-heavy work.</span>
+                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=claude.com&sz=64" alt="">Claude Opus latest high in Claude Code CLI</span>
+                <span class="why">Alternate between Opus latest and Codex + GPT latest high. Opus for deep repo reasoning and large-context source-heavy work; Codex when the harness wins.</span>
               </td>
-              <td data-label="Open">
+              <td data-label="Links">
                 <span class="link-list">
                   <a href="https://claude.com/product/claude-code" target="_blank" rel="noopener noreferrer">Claude Code</a>
                   <a href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Repo kit</a>
@@ -312,37 +365,37 @@ footer{
               </td>
             </tr>
             <tr>
-              <td data-label="Use case">Prototyping and automations</td>
+              <td data-label="Use case"><span class="use-emoji">⚡</span>Prototyping and automations</td>
               <td data-label="Tool">
-                <span class="tool-name">Codex + GPT-5.5 high</span>
-                <span class="why">Harness, worktrees, and shell access make scaffold and glue work fast.</span>
+                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="">Codex + GPT latest high</span>
+                <span class="why">Harness, worktrees, and shell access make end-to-end scaffold and glue work fast without large functionality bugs. Second brain is one use case: a self-maintained <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener noreferrer">LLM wiki (Karpathy)</a> the agent updates as new material comes in.</span>
               </td>
-              <td data-label="Open">
+              <td data-label="Links">
                 <span class="link-list">
                   <a href="https://developers.openai.com/codex" target="_blank" rel="noopener noreferrer">Codex</a>
-                  <a href="https://github.com/ek0212/second-brain-template" target="_blank" rel="noopener noreferrer">Template</a>
+                  <a href="https://github.com/ek0212/second-brain-template" target="_blank" rel="noopener noreferrer">Second brain template</a>
                 </span>
               </td>
             </tr>
             <tr>
-              <td data-label="Use case">Writing, editing, deep research</td>
+              <td data-label="Use case"><span class="use-emoji">✍️</span>Writing, editing, deep research</td>
               <td data-label="Tool">
-                <span class="tool-name">Claude Chat</span>
+                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" alt="">Claude Chat</span>
                 <span class="why">Sonnet fast, Opus thorough. NotebookLM when sources lead; Claude when synthesis leads.</span>
               </td>
-              <td data-label="Open">
+              <td data-label="Links">
                 <span class="link-list">
                   <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a>
                 </span>
               </td>
             </tr>
             <tr>
-              <td data-label="Use case">Custom UX and user-facing design</td>
+              <td data-label="Use case"><span class="use-emoji">🎨</span>Custom UX and user-facing design</td>
               <td data-label="Tool">
-                <span class="tool-name">Claude + frontend-design skill</span>
+                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="">Claude + frontend-design skill</span>
                 <span class="why">Claude is better for interface taste; the skill keeps output from going generic.</span>
               </td>
-              <td data-label="Open">
+              <td data-label="Links">
                 <span class="link-list">
                   <a href="https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md" target="_blank" rel="noopener noreferrer">Skill</a>
                   <a href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Repo kit</a>
@@ -350,88 +403,107 @@ footer{
               </td>
             </tr>
             <tr>
-              <td data-label="Use case">Images, visual ideation, custom GPTs</td>
+              <td data-label="Use case"><span class="use-emoji">🖼️</span>Images, visual ideation, custom GPTs</td>
               <td data-label="Tool">
-                <span class="tool-name">ChatGPT</span>
-                <span class="why">Best image generation and custom-GPT workflows.</span>
+                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" alt="">ChatGPT</span>
+                <span class="why">Best image generation. Custom GPTs = reusable ChatGPT configs with your own instructions, knowledge files, and actions; share a link, no code needed.</span>
               </td>
-              <td data-label="Open">
+              <td data-label="Links">
                 <span class="link-list">
                   <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a>
+                  <a href="https://help.openai.com/en/articles/8554397-creating-a-gpt" target="_blank" rel="noopener noreferrer">Custom GPT docs</a>
                 </span>
               </td>
             </tr>
             <tr>
-              <td data-label="Use case">Learning, documents, podcasts</td>
+              <td data-label="Use case"><span class="use-emoji">📚</span>Learning, documents, podcasts</td>
               <td data-label="Tool">
-                <span class="tool-name">NotebookLM</span>
+                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=notebooklm.google.com&sz=64" alt="">NotebookLM</span>
                 <span class="why">Documents, books, papers; turns source packets into audio summaries.</span>
               </td>
-              <td data-label="Open">
+              <td data-label="Links">
                 <span class="link-list">
                   <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a>
                 </span>
               </td>
             </tr>
             <tr>
-              <td data-label="Use case">Apple integrations and iMessage</td>
+              <td data-label="Use case"><span class="use-emoji">🍎</span>Apple integrations and iMessage</td>
               <td data-label="Tool">
-                <span class="tool-name">Claude Cowork</span>
-                <span class="why">Works with iMessage and Apple-adjacent flows. Use local scripts or Codex for deterministic prep.</span>
+                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" alt="">Claude Cowork</span>
+                <span class="why">Used for automations across iMessage and Apple-adjacent flows: trigger and monitor Claude Code tasks from your phone via the official iMessage plugin.</span>
               </td>
-              <td data-label="Open">
+              <td data-label="Links">
                 <span class="link-list">
                   <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a>
-                  <a href="https://support.apple.com/guide/terminal/script-management-with-launchd-apdc6c1077b-5d5d-4d35-9c19-60f2397b2369/mac" target="_blank" rel="noopener noreferrer">launchd</a>
+                  <a href="https://claude.com/plugins/imessage" target="_blank" rel="noopener noreferrer">iMessage plugin</a>
+                  <a href="https://github.com/anthropics/claude-plugins-official/blob/main/external_plugins/imessage/README.md" target="_blank" rel="noopener noreferrer">Docs</a>
                 </span>
               </td>
             </tr>
             <tr>
-              <td data-label="Use case">Quick presentations</td>
+              <td data-label="Use case"><span class="use-emoji">🔌</span>Scheduled automations and connectors</td>
               <td data-label="Tool">
-                <span class="tool-name">Gamma</span>
+                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="">Codex / ChatGPT</span>
+                <span class="why">Scheduled tasks for recurring prompts and connectors for Gmail, Drive, Calendar, GitHub, and more pull real context into runs without manual paste.</span>
+              </td>
+              <td data-label="Links">
+                <span class="link-list">
+                  <a href="https://developers.openai.com/codex" target="_blank" rel="noopener noreferrer">Codex</a>
+                  <a href="https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt" target="_blank" rel="noopener noreferrer">Scheduled tasks</a>
+                  <a href="https://help.openai.com/en/articles/11487775-connectors-in-chatgpt" target="_blank" rel="noopener noreferrer">Connectors</a>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Use case"><span class="use-emoji">📊</span>Quick presentations</td>
+              <td data-label="Tool">
+                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" alt="">Gamma</span>
                 <span class="why">Fastest path from rough content to a presentable deck.</span>
               </td>
-              <td data-label="Open">
+              <td data-label="Links">
                 <span class="link-list">
                   <a href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Gamma</a>
                 </span>
               </td>
             </tr>
             <tr>
-              <td data-label="Use case">Project starts and stress tests</td>
+              <td data-label="Use case"><span class="use-emoji">🚀</span>Project starts and stress tests</td>
               <td data-label="Tool">
-                <span class="tool-name">Clarity Agent</span>
+                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="">Clarity Agent</span>
                 <span class="why">Scaffolding, project init, and edge-case passes once a project exists.</span>
               </td>
-              <td data-label="Open">
+              <td data-label="Links">
                 <span class="link-list">
                   <a href="https://github.com/microsoft/clarity-agent" target="_blank" rel="noopener noreferrer">Clarity</a>
                 </span>
               </td>
             </tr>
             <tr>
-              <td data-label="Use case">Speech to text</td>
+              <td data-label="Use case"><span class="use-emoji">🎙️</span>Speech to text</td>
               <td data-label="Tool">
-                <span class="tool-name">Wispr Flow</span>
+                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=wispr.ai&sz=64" alt="">Wispr Flow</span>
                 <span class="why">Dictation when speaking is faster than typing.</span>
               </td>
-              <td data-label="Open">
+              <td data-label="Links">
                 <span class="link-list">
                   <a href="https://www.wispr.ai/" target="_blank" rel="noopener noreferrer">Wispr</a>
                 </span>
               </td>
             </tr>
             <tr>
-              <td data-label="Use case">Human-first tasks</td>
+              <td data-label="Use case"><span class="use-emoji">✍️</span>Personal methods</td>
               <td data-label="Tool">
-                <span class="tool-name">Personal methods</span>
-                <span class="why">Email, meeting notes, travel, recipes. Use AI for cleanup, comparison, or scanning, not the whole task.</span>
-              </td>
-              <td data-label="Open">
-                <span class="link-list">
-                  <a href="https://ek0212.github.io/eves-ai-guide/" target="_blank" rel="noopener noreferrer">This guide</a>
+                <span class="tool-name">Original workflows</span>
+                <span class="why">
+                  <strong>Email drafting:</strong> write yourself using your own style rules and constraints. Keep it human.<br>
+                  <strong>Meeting notes:</strong> use whatever is native to your meeting platform.<br>
+                  <strong>Travel planning:</strong> query Claude, ChatGPT, and Gemini, then compare their top site recommendations.<br>
+                  <strong>Recipe portion adjustment:</strong> only useful for adjusting portions or scanning items. Make your own recipes.
                 </span>
+              </td>
+              <td data-label="Links">
+                <span class="link-list"></span>
               </td>
             </tr>
           </tbody>
@@ -458,7 +530,7 @@ footer{
         </article>
         <article class="timeline-step">
           <time>Now</time>
-          <h3>Opus back for coding</h3>
+          <h3>Alternate Opus latest + Codex for coding</h3>
         </article>
       </div>
     </section>
@@ -473,6 +545,14 @@ footer{
           <p>Opus 4.6 / 4.7 / 4.8 all priced at $5 input / $25 output per million tokens. Verify before citing. <a href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noopener noreferrer">4.8</a>, <a href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank" rel="noopener noreferrer">4.7</a>, <a href="https://www.anthropic.com/news/claude-opus-4-6" target="_blank" rel="noopener noreferrer">4.6</a>.</p>
         </article>
         <article class="note-card">
+          <h3>GPT / Codex pricing</h3>
+          <p>GPT-5.5 and Codex rates change frequently across tiers and reasoning effort. Verify before citing on the <a href="https://platform.openai.com/docs/pricing" target="_blank" rel="noopener noreferrer">OpenAI pricing page</a> or your <a href="https://platform.openai.com/account/billing" target="_blank" rel="noopener noreferrer">billing dashboard</a>.</p>
+        </article>
+        <article class="note-card">
+          <h3>CLI &gt; app for Claude</h3>
+          <p>Claude Code CLI beats the desktop app: real shell access, repo context, hooks, and the agent loop are first-class. The app is fine for chat, but coding work lives in the terminal.</p>
+        </article>
+        <article class="note-card">
           <h3>Harness matters</h3>
           <p>Model is only half the choice. For getting a project off the ground end-to-end without large functionality bugs, harness + GPT-5.5 is the most reliable path. Opus + Claude Code takes over once the work is deep repo reasoning.</p>
         </article>
@@ -483,6 +563,22 @@ footer{
         <article class="note-card">
           <h3>Research split</h3>
           <p>NotebookLM when sources are the center. Claude extra reasoning when synthesis and judgment are the center.</p>
+        </article>
+        <article class="note-card">
+          <h3>Claude Code agent teams</h3>
+          <p>Spin up a team of specialized subagents (researcher, builder, reviewer, etc.) that run in parallel and report back to the main thread. Use when one task splits into independent workstreams: cross-service refactors, multi-file investigations, or fan-out research where serial work would burn context. <a href="https://code.claude.com/docs/en/agent-teams" target="_blank" rel="noopener noreferrer">Agent teams docs</a>.</p>
+        </article>
+        <article class="note-card">
+          <h3>Hotkey: <code>cc</code> for Claude Code</h3>
+          <p>Set up a one-letter shortcut so typing <code>cc</code> in any Terminal tab launches Claude Code in the current directory.</p>
+          <ol>
+            <li>Open Terminal (or iTerm) on macOS.</li>
+            <li>Open your shell config in a text editor: <code>open -e ~/.zshrc</code> (or use <code>nano ~/.zshrc</code> in the terminal).</li>
+            <li>Add this line at the bottom of the file and save: <br><code>alias cc='claude --permission-mode auto'</code></li>
+            <li>Reload the config in your current shell: <code>source ~/.zshrc</code> (or just open a new Terminal tab).</li>
+            <li>Now <code>cd</code> into any project folder and run <code>cc</code> to start Claude Code.</li>
+          </ol>
+          <p><strong>Why <code>--permission-mode auto</code>:</strong> auto-approves safe, reversible operations (reads, edits in the project) but still prompts before irreversible or risky actions (deleting files, running shell commands outside the repo, network calls). Safer default than <code>--dangerously-skip-permissions</code>, which skips every prompt.</p>
         </article>
       </div>
     </section>
