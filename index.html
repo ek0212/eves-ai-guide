@@ -186,7 +186,7 @@ td:nth-child(3){width:30%}
 }
 .note-grid,.creator-grid{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:10px;
 }
 .creator-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
@@ -474,7 +474,11 @@ footer{
         </article>
         <article class="note-card">
           <h3>Harness matters</h3>
-          <p>Model is only half the choice. Claude Code + Opus for serious repo work; Codex + GPT-5.5 high for fast prototyping.</p>
+          <p>Model is only half the choice. For getting a project off the ground end-to-end without large functionality bugs, harness + GPT-5.5 is the most reliable path. Opus + Claude Code takes over once the work is deep repo reasoning.</p>
+        </article>
+        <article class="note-card">
+          <h3>Benchmarks worth trusting</h3>
+          <p>For real datapoints on how models actually perform on code, check <a href="https://www.swebench.com/" target="_blank" rel="noopener noreferrer">SWE-bench</a> and <a href="https://deepswe.net/" target="_blank" rel="noopener noreferrer">DeepSWE bench</a>. Vendor charts are marketing; SWE-bench-style harness evals show whether the model lands a working patch.</p>
         </article>
         <article class="note-card">
           <h3>Research split</h3>
