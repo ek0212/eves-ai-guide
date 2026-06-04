@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Eve's AI Guide - June 2026</title>
+<title>Eve's AI Guide</title>
 <style>
 :root{
   --bg:#f7f4ee;
@@ -222,10 +222,33 @@ footer{
   .section-note{margin-top:8px}
   .nav a{width:100%;justify-content:center}
   .timeline-grid,.note-grid,.creator-grid{grid-template-columns:1fr}
-  .table-wrap{overflow-x:auto}
-  table{min-width:920px}
-  th{padding:9px 10px}
-  td{padding:10px;font-size:.88rem}
+  .table-wrap{background:transparent;border:0;box-shadow:none;border-radius:0}
+  table,tbody,tr,td{display:block;width:100%}
+  thead{display:none}
+  tr{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:4px 0;
+    margin-bottom:10px;
+    box-shadow:0 12px 35px rgba(38,29,18,.06);
+  }
+  td{
+    width:100% !important;
+    padding:10px 14px;
+    border-top:0;
+    font-size:.92rem;
+  }
+  td+td{border-top:1px solid var(--line)}
+  td::before{
+    content:attr(data-label);
+    display:block;
+    margin-bottom:4px;
+    color:var(--accent);
+    font:800 .68rem/1.2 ui-sans-serif,system-ui,sans-serif;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
   .link-list a{width:auto}
 }
 </style>
@@ -234,7 +257,7 @@ footer{
 <div class="page">
   <header class="hero">
     <div>
-      <div class="eyebrow">Eve Kazarian - checked June 4, 2026</div>
+      <div class="eyebrow">Eve Kazarian</div>
       <h1>The AI Guide</h1>
       <p class="dek">A compact reference for which AI tools I use, what I use them for, and why.</p>
       <nav class="nav" aria-label="Page sections">
@@ -246,7 +269,7 @@ footer{
     </div>
     <aside class="current" aria-label="Current default">
       <h2>Current default</h2>
-      <p>Codex plus GPT-5.5 xhigh for coding. Claude Sonnet for fast writing. Claude Opus for deeper writing, research, and UX reasoning.</p>
+      <p>Claude Opus for coding. Codex plus GPT-5.5 high for prototyping and automations. Claude Sonnet for fast writing. Claude Opus for deeper writing, research, and UX reasoning.</p>
     </aside>
   </header>
 
@@ -254,7 +277,6 @@ footer{
     <section id="timeline">
       <div class="section-head">
         <h2>Preference Timeline</h2>
-        <p class="section-note">Only actual preference changes belong here.</p>
       </div>
       <div class="timeline-grid">
         <article class="timeline-card">
@@ -274,8 +296,8 @@ footer{
         </article>
         <article class="timeline-card">
           <time>Now</time>
-          <h3>Split by job</h3>
-          <p>Codex for coding, Claude for writing and UX, NotebookLM for source-grounded learning and podcasts.</p>
+          <h3>Opus back for coding</h3>
+          <p>Claude Opus is the coding default again. Codex plus GPT-5.5 high stays in rotation for prototyping and automations. NotebookLM for source-grounded learning and podcasts.</p>
         </article>
       </div>
     </section>
@@ -283,7 +305,6 @@ footer{
     <section id="reference">
       <div class="section-head">
         <h2>Reference Table</h2>
-        <p class="section-note">Use case first, with the tool, why I prefer it, and what each link is for.</p>
       </div>
       <div class="table-wrap">
         <table>
@@ -298,22 +319,23 @@ footer{
           <tbody>
             <tr>
               <td data-label="Use case">Coding, debugging, repo work</td>
-              <td data-label="Tool">Codex + GPT-5.5 xhigh</td>
-              <td data-label="Why this tool">Best current coding setup for me. The harness is critical: worktrees, local repo context, verification loops, and shell access make it better than using a model in isolation.</td>
+              <td data-label="Tool">Claude Code CLI + Opus</td>
+              <td data-label="Why this tool">Current coding default. Opus reasoning quality on real repo changes is the deciding factor, and the large-context window holds up across source-heavy work.</td>
               <td data-label="Links">
                 <span class="link-list">
-                  <span><a href="https://developers.openai.com/codex" target="_blank" rel="noopener">Codex docs</a><span class="link-note">What Codex is and how the coding surface works.</span></span>
-                  <span><a href="https://github.com/ek0212/second-brain-template" target="_blank" rel="noopener">Second-brain template</a><span class="link-note">My repo pattern for personal knowledge and backlog workflows.</span></span>
+                  <span><a href="https://claude.com/product/claude-code" target="_blank" rel="noopener noreferrer">Claude Code</a><span class="link-note">Claude's coding CLI and agent surface.</span></span>
+                  <span><a href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Agent-ready repo kit</a><span class="link-note">My repo setup for reliable agent behavior.</span></span>
                 </span>
               </td>
             </tr>
             <tr>
-              <td data-label="Use case">Large-context coding fallback</td>
-              <td data-label="Tool">Claude Code CLI + Opus</td>
-              <td data-label="Why this tool">Still a good terminal coding tool, especially for large-context tasks. Opus 4.6 with 1M context was my favorite before Codex plus GPT-5.5 became better for coding UX.</td>
+              <td data-label="Use case">Prototyping and automations</td>
+              <td data-label="Tool">Codex + GPT-5.5 high</td>
+              <td data-label="Why this tool">Best for spinning up prototypes, scripts, and automation glue. The harness, worktrees, and shell access make iteration fast when the goal is throwaway or scaffold work, not deep repo changes.</td>
               <td data-label="Links">
                 <span class="link-list">
-                  <span><a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a><span class="link-note">Claude's coding CLI and agent surface.</span></span>
+                  <span><a href="https://developers.openai.com/codex" target="_blank" rel="noopener noreferrer">Codex docs</a><span class="link-note">What Codex is and how the coding surface works.</span></span>
+                  <span><a href="https://github.com/ek0212/second-brain-template" target="_blank" rel="noopener noreferrer">Second-brain template</a><span class="link-note">My repo pattern for personal knowledge and backlog workflows.</span></span>
                 </span>
               </td>
             </tr>
@@ -323,7 +345,7 @@ footer{
               <td data-label="Why this tool">Sonnet is the fast writing model. Opus is the thorough writing and reasoning model. For deep research, I use NotebookLM when sources are the center and Claude extra reasoning when synthesis is the center.</td>
               <td data-label="Links">
                 <span class="link-list">
-                  <span><a href="https://claude.ai/" target="_blank" rel="noopener">Claude</a><span class="link-note">Main writing, editing, and reasoning surface.</span></span>
+                  <span><a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a><span class="link-note">Main writing, editing, and reasoning surface.</span></span>
                 </span>
               </td>
             </tr>
@@ -333,8 +355,8 @@ footer{
               <td data-label="Why this tool">Claude is still better for user-facing UX and interface taste. The frontend-design skill makes the design brief concrete and keeps output from becoming generic.</td>
               <td data-label="Links">
                 <span class="link-list">
-                  <span><a href="https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md" target="_blank" rel="noopener">Frontend-design skill</a><span class="link-note">Skill prompt for distinctive, production-grade frontend work.</span></span>
-                  <span><a href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener">Agent-ready repo kit</a><span class="link-note">My repo setup for reliable agent behavior.</span></span>
+                  <span><a href="https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md" target="_blank" rel="noopener noreferrer">Frontend-design skill</a><span class="link-note">Skill prompt for distinctive, production-grade frontend work.</span></span>
+                  <span><a href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Agent-ready repo kit</a><span class="link-note">My repo setup for reliable agent behavior.</span></span>
                 </span>
               </td>
             </tr>
@@ -344,7 +366,7 @@ footer{
               <td data-label="Why this tool">Best for image generation, especially with the latest image model and custom GPT workflows. Also useful for reusable learning assistants and quick visual iteration.</td>
               <td data-label="Links">
                 <span class="link-list">
-                  <span><a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT</a><span class="link-note">Image generation, custom GPTs, and general GPT-5.5 chat.</span></span>
+                  <span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><span class="link-note">Image generation, custom GPTs, and general GPT-5.5 chat.</span></span>
                 </span>
               </td>
             </tr>
@@ -354,7 +376,7 @@ footer{
               <td data-label="Why this tool">Best when the source material matters. I use it for documents, books, papers, and turning source packets into podcast-style audio summaries.</td>
               <td data-label="Links">
                 <span class="link-list">
-                  <span><a href="https://notebooklm.google.com/" target="_blank" rel="noopener">NotebookLM</a><span class="link-note">Source-grounded notebooks and audio summaries.</span></span>
+                  <span><a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a><span class="link-note">Source-grounded notebooks and audio summaries.</span></span>
                 </span>
               </td>
             </tr>
@@ -364,8 +386,8 @@ footer{
               <td data-label="Why this tool">Useful because it can work with iMessage and Apple-adjacent workflows. Caveat: use deterministic local scripts or Codex for fetching and prep when network constraints matter.</td>
               <td data-label="Links">
                 <span class="link-list">
-                  <span><a href="https://claude.ai/" target="_blank" rel="noopener">Claude</a><span class="link-note">Claude account and Cowork access point.</span></span>
-                  <span><a href="https://support.apple.com/guide/terminal/script-management-with-launchd-apdc6c1077b-5d5d-4d35-9c19-60f2397b2369/mac" target="_blank" rel="noopener">launchd</a><span class="link-note">Local scheduled scripts for deterministic prep work.</span></span>
+                  <span><a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a><span class="link-note">Claude account and Cowork access point.</span></span>
+                  <span><a href="https://support.apple.com/guide/terminal/script-management-with-launchd-apdc6c1077b-5d5d-4d35-9c19-60f2397b2369/mac" target="_blank" rel="noopener noreferrer">launchd</a><span class="link-note">Local scheduled scripts for deterministic prep work.</span></span>
                 </span>
               </td>
             </tr>
@@ -375,7 +397,7 @@ footer{
               <td data-label="Why this tool">Fastest option for turning rough content into a presentable deck. I have not tested it as deeply as the core coding and writing stack.</td>
               <td data-label="Links">
                 <span class="link-list">
-                  <span><a href="https://gamma.app/" target="_blank" rel="noopener">Gamma</a><span class="link-note">Quick AI presentation drafts.</span></span>
+                  <span><a href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Gamma</a><span class="link-note">Quick AI presentation drafts.</span></span>
                 </span>
               </td>
             </tr>
@@ -385,7 +407,7 @@ footer{
               <td data-label="Why this tool">Useful for scaffolding, project initialization, and edge-case passes after a project exists.</td>
               <td data-label="Links">
                 <span class="link-list">
-                  <span><a href="https://github.com/microsoft/clarity-agent" target="_blank" rel="noopener">Clarity Agent</a><span class="link-note">Microsoft's agent for project clarity and stress testing.</span></span>
+                  <span><a href="https://github.com/microsoft/clarity-agent" target="_blank" rel="noopener noreferrer">Clarity Agent</a><span class="link-note">Microsoft's agent for project clarity and stress testing.</span></span>
                 </span>
               </td>
             </tr>
@@ -395,7 +417,7 @@ footer{
               <td data-label="Why this tool">Best dictation pick when speaking is faster than typing and I want to capture the rough thought quickly.</td>
               <td data-label="Links">
                 <span class="link-list">
-                  <span><a href="https://www.wispr.ai/" target="_blank" rel="noopener">Wispr Flow</a><span class="link-note">Dictation and speech-to-text app.</span></span>
+                  <span><a href="https://www.wispr.ai/" target="_blank" rel="noopener noreferrer">Wispr Flow</a><span class="link-note">Dictation and speech-to-text app.</span></span>
                 </span>
               </td>
             </tr>
@@ -405,7 +427,7 @@ footer{
               <td data-label="Why this tool">Email, meeting notes, travel planning, and recipes should not be fully outsourced. Use AI for cleanup, comparison, scaling, or scanning.</td>
               <td data-label="Links">
                 <span class="link-list">
-                  <span><a href="https://ek0212.github.io/eves-ai-guide/" target="_blank" rel="noopener">This guide</a><span class="link-note">The public reference page itself.</span></span>
+                  <span><a href="https://ek0212.github.io/eves-ai-guide/" target="_blank" rel="noopener noreferrer">This guide</a><span class="link-note">The public reference page itself.</span></span>
                 </span>
               </td>
             </tr>
@@ -417,16 +439,15 @@ footer{
     <section id="notes">
       <div class="section-head">
         <h2>Notes</h2>
-        <p class="section-note">Short context that matters, without a separate sources section.</p>
       </div>
       <div class="note-grid">
         <article class="note-card">
           <h3>Opus pricing note</h3>
-          <p>Anthropic lists Opus 4.6 at $5 input / $25 output per million tokens, says Opus 4.7 stayed the same as 4.6, and says Opus 4.8 regular usage is unchanged from 4.7. Check current pricing before citing. <a href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noopener">4.8 source</a>, <a href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank" rel="noopener">4.7 source</a>, <a href="https://www.anthropic.com/news/claude-opus-4-6" target="_blank" rel="noopener">4.6 source</a>.</p>
+          <p>Anthropic lists Opus 4.6 at $5 input / $25 output per million tokens, says Opus 4.7 stayed the same as 4.6, and says Opus 4.8 regular usage is unchanged from 4.7. Check current pricing before citing. <a href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noopener noreferrer">4.8 source</a>, <a href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank" rel="noopener noreferrer">4.7 source</a>, <a href="https://www.anthropic.com/news/claude-opus-4-6" target="_blank" rel="noopener noreferrer">4.6 source</a>.</p>
         </article>
         <article class="note-card">
           <h3>Harness matters</h3>
-          <p>For coding, the model is only part of the choice. Codex wins because the worktree and repo workflow feel better for how I work.</p>
+          <p>For coding, the model is only part of the choice. Claude Code plus Opus wins for serious repo work. Codex plus GPT-5.5 high still wins for fast prototyping and automations.</p>
         </article>
         <article class="note-card">
           <h3>Deep research split</h3>
@@ -438,14 +459,13 @@ footer{
     <section id="creators">
       <div class="section-head">
         <h2>Creators</h2>
-        <p class="section-note">Names and links only.</p>
       </div>
       <div class="creator-grid">
-        <article class="creator-card"><h3>Theo</h3><p>t3.gg / T3 Chat</p><a href="https://www.youtube.com/@t3dotgg" target="_blank" rel="noopener">Open</a></article>
-        <article class="creator-card"><h3>John Kim</h3><p>Meta engineer</p><a href="https://www.youtube.com/@johnkimlife" target="_blank" rel="noopener">Open</a></article>
-        <article class="creator-card"><h3>Matt Wolfe</h3><p>AI roundups</p><a href="https://www.youtube.com/@mreflow" target="_blank" rel="noopener">Open</a></article>
-        <article class="creator-card"><h3>Karpathy</h3><p>Blog / X</p><a href="https://karpathy.ai/" target="_blank" rel="noopener">Open</a></article>
-        <article class="creator-card"><h3>Tina Huang</h3><p>AI learning</p><a href="https://www.youtube.com/@TinaHuang1" target="_blank" rel="noopener">Open</a></article>
+        <article class="creator-card"><h3>Theo</h3><p>t3.gg / T3 Chat</p><a href="https://www.youtube.com/@t3dotgg" target="_blank" rel="noopener noreferrer">Open</a></article>
+        <article class="creator-card"><h3>John Kim</h3><p>Meta engineer</p><a href="https://www.youtube.com/@johnkimlife" target="_blank" rel="noopener noreferrer">Open</a></article>
+        <article class="creator-card"><h3>Matt Wolfe</h3><p>AI roundups</p><a href="https://www.youtube.com/@mreflow" target="_blank" rel="noopener noreferrer">Open</a></article>
+        <article class="creator-card"><h3>Karpathy</h3><p>Blog / X</p><a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">Open</a></article>
+        <article class="creator-card"><h3>Tina Huang</h3><p>AI learning</p><a href="https://www.youtube.com/@TinaHuang1" target="_blank" rel="noopener noreferrer">Open</a></article>
       </div>
     </section>
   </main>
