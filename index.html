@@ -28,14 +28,10 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
-.page{max-width:1180px;margin:0 auto;padding:30px 20px 46px}
+.page{max-width:1080px;margin:0 auto;padding:30px 20px 46px}
 .hero{
-  padding:42px 0 28px;
+  padding:36px 0 24px;
   border-bottom:1px solid var(--line);
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(260px,360px);
-  gap:34px;
-  align-items:end;
 }
 .eyebrow{
   color:var(--accent);
@@ -44,19 +40,41 @@ a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
   text-transform:uppercase;
 }
 h1{
-  margin:10px 0 12px;
-  font-size:clamp(3rem,7.2vw,7rem);
-  line-height:.9;
+  margin:10px 0 22px;
+  font-size:clamp(2.6rem,6.4vw,5.4rem);
+  line-height:.92;
   font-weight:500;
   letter-spacing:0;
 }
-.dek{
-  margin:0;
-  max-width:700px;
-  color:#302a24;
-  font-size:clamp(1.08rem,1.8vw,1.32rem);
-  line-height:1.42;
+.now{
+  background:var(--ink);
+  color:#fff8ed;
+  border-radius:10px;
+  box-shadow:var(--shadow);
+  padding:18px 22px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:18px;
+  align-items:start;
 }
+.now-label{
+  color:#f0c4ac;
+  font:800 .72rem/1.2 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding-top:3px;
+  white-space:nowrap;
+}
+.now-list{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:6px;
+  font-size:1rem;
+  line-height:1.4;
+}
+.now-list strong{color:#f0c4ac;font-weight:700}
 .nav{
   display:flex;
   flex-wrap:wrap;
@@ -64,82 +82,24 @@ h1{
   margin-top:22px;
 }
 .nav a{
-  min-height:34px;
+  min-height:32px;
   display:inline-flex;
   align-items:center;
   border:1px solid var(--line);
   border-radius:999px;
   background:rgba(255,253,248,.78);
   color:var(--ink);
-  padding:8px 12px;
-  font:800 .74rem/1 ui-sans-serif,system-ui,sans-serif;
+  padding:6px 12px;
+  font:800 .72rem/1 ui-sans-serif,system-ui,sans-serif;
 }
-.current{
-  background:var(--ink);
-  color:#fff8ed;
-  border-radius:8px;
-  box-shadow:var(--shadow);
-  padding:20px;
-}
-.current h2{
-  margin:0 0 12px;
-  color:#f0c4ac;
-  font:800 .74rem/1.2 ui-sans-serif,system-ui,sans-serif;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-.current p{margin:0;font-size:1.02rem;line-height:1.45}
-section{padding:32px 0;border-bottom:1px solid var(--line)}
+section{padding:28px 0;border-bottom:1px solid var(--line)}
 section:last-of-type{border-bottom:0}
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:18px;
-  margin-bottom:16px;
-}
+.section-head{margin-bottom:14px}
 .section-head h2{
   margin:0;
-  font-size:clamp(1.65rem,2.8vw,2.35rem);
+  font-size:clamp(1.55rem,2.6vw,2.2rem);
   line-height:1;
   font-weight:500;
-}
-.section-note{
-  margin:0;
-  max-width:520px;
-  color:var(--muted);
-  font-size:.95rem;
-  line-height:1.45;
-}
-.timeline-grid{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:10px;
-}
-.timeline-card,.note-card,.creator-card{
-  background:rgba(255,253,248,.84);
-  border:1px solid var(--line);
-  border-radius:8px;
-  padding:14px;
-}
-.timeline-card time{
-  display:block;
-  margin-bottom:8px;
-  color:var(--accent);
-  font:800 .7rem/1.2 ui-sans-serif,system-ui,sans-serif;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-}
-.timeline-card h3,.note-card h3,.creator-card h3{
-  margin:0 0 6px;
-  font-size:1.04rem;
-  line-height:1.18;
-}
-.timeline-card p,.note-card p,.creator-card p{
-  margin:0;
-  color:#38312b;
-  font-size:.92rem;
-  line-height:1.45;
 }
 .table-wrap{
   background:var(--panel);
@@ -148,47 +108,81 @@ section:last-of-type{border-bottom:0}
   overflow:hidden;
   box-shadow:0 12px 35px rgba(38,29,18,.06);
 }
-table{
-  width:100%;
-  border-collapse:collapse;
-}
+table{width:100%;border-collapse:collapse}
 th{
   background:var(--soft);
   color:var(--accent);
   text-align:left;
-  padding:11px 12px;
+  padding:11px 14px;
   font:800 .7rem/1.2 ui-sans-serif,system-ui,sans-serif;
   letter-spacing:.1em;
   text-transform:uppercase;
 }
 td{
   vertical-align:top;
-  padding:13px 12px;
+  padding:14px;
   border-top:1px solid var(--line);
-  font-size:.94rem;
+  font-size:.95rem;
   line-height:1.45;
 }
-td:first-child{width:18%;font-weight:700}
-td:nth-child(2){width:20%;font-weight:700}
-td:nth-child(3){width:36%;color:#342e28}
-td:nth-child(4){width:26%}
+td:first-child{width:24%;font-weight:700}
+td:nth-child(2){width:46%}
+td:nth-child(3){width:30%}
+.tool-name{
+  display:block;
+  font-weight:700;
+  font-size:1rem;
+  margin-bottom:3px;
+}
+.why{
+  display:block;
+  color:var(--muted);
+  font-size:.88rem;
+  line-height:1.42;
+}
 .link-list{
-  display:grid;
-  gap:7px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
 }
 .link-list a{
-  width:max-content;
-  max-width:100%;
-  font:800 .72rem/1.2 ui-sans-serif,system-ui,sans-serif;
-  letter-spacing:.07em;
+  display:inline-flex;
+  align-items:center;
+  padding:5px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:rgba(255,253,248,.78);
+  color:var(--ink);
+  font:800 .7rem/1 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.06em;
   text-transform:uppercase;
 }
-.link-note{
+.timeline-strip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.timeline-step{
+  flex:1 1 0;
+  min-width:180px;
+  background:rgba(255,253,248,.84);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:10px 12px;
+}
+.timeline-step time{
   display:block;
-  margin-top:2px;
-  color:var(--muted);
-  font-size:.82rem;
-  font-weight:400;
+  color:var(--accent);
+  font:800 .68rem/1.2 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.timeline-step h3{
+  margin:0;
+  font-size:.98rem;
+  line-height:1.22;
+  font-weight:600;
 }
 .note-grid,.creator-grid{
   display:grid;
@@ -196,10 +190,27 @@ td:nth-child(4){width:26%}
   gap:10px;
 }
 .creator-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.note-card,.creator-card{
+  background:rgba(255,253,248,.84);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:14px;
+}
+.note-card h3,.creator-card h3{
+  margin:0 0 6px;
+  font-size:1rem;
+  line-height:1.2;
+}
+.note-card p,.creator-card p{
+  margin:0;
+  color:#38312b;
+  font-size:.9rem;
+  line-height:1.45;
+}
 .creator-card a{
   display:inline-flex;
   margin-top:8px;
-  font:800 .72rem/1 ui-sans-serif,system-ui,sans-serif;
+  font:800 .7rem/1 ui-sans-serif,system-ui,sans-serif;
   letter-spacing:.07em;
   text-transform:uppercase;
 }
@@ -211,17 +222,16 @@ footer{
   text-transform:uppercase;
 }
 @media(max-width:920px){
-  .hero{grid-template-columns:1fr}
-  .timeline-grid,.note-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .note-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .creator-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:760px){
   .page{padding:18px 14px 34px}
-  .hero{padding:32px 0 24px}
-  .section-head{display:block}
-  .section-note{margin-top:8px}
-  .nav a{width:100%;justify-content:center}
-  .timeline-grid,.note-grid,.creator-grid{grid-template-columns:1fr}
+  .hero{padding:28px 0 20px}
+  .now{grid-template-columns:1fr;gap:10px;padding:16px}
+  .nav a{flex:1 1 auto;justify-content:center}
+  .note-grid,.creator-grid{grid-template-columns:1fr}
+  .timeline-step{flex-basis:100%}
   .table-wrap{background:transparent;border:0;box-shadow:none;border-radius:0}
   table,tbody,tr,td{display:block;width:100%}
   thead{display:none}
@@ -229,82 +239,54 @@ footer{
     background:var(--panel);
     border:1px solid var(--line);
     border-radius:8px;
-    padding:4px 0;
     margin-bottom:10px;
     box-shadow:0 12px 35px rgba(38,29,18,.06);
   }
   td{
     width:100% !important;
-    padding:10px 14px;
+    padding:12px 14px;
     border-top:0;
-    font-size:.92rem;
+    font-size:.95rem;
   }
   td+td{border-top:1px solid var(--line)}
   td::before{
     content:attr(data-label);
     display:block;
-    margin-bottom:4px;
+    margin-bottom:5px;
     color:var(--accent);
-    font:800 .68rem/1.2 ui-sans-serif,system-ui,sans-serif;
+    font:800 .66rem/1.2 ui-sans-serif,system-ui,sans-serif;
     letter-spacing:.1em;
     text-transform:uppercase;
   }
-  .link-list a{width:auto}
 }
 </style>
 </head>
 <body>
 <div class="page">
   <header class="hero">
-    <div>
-      <div class="eyebrow">Eve Kazarian</div>
-      <h1>The AI Guide</h1>
-      <p class="dek">A compact reference for which AI tools I use, what I use them for, and why.</p>
-      <nav class="nav" aria-label="Page sections">
-        <a href="#timeline">Preference timeline</a>
-        <a href="#reference">Reference table</a>
-        <a href="#notes">Notes</a>
-        <a href="#creators">Creators</a>
-      </nav>
+    <div class="eyebrow">Eve Kazarian</div>
+    <h1>The AI Guide</h1>
+    <div class="now" aria-label="Current defaults">
+      <span class="now-label">Now</span>
+      <ul class="now-list">
+        <li><strong>Coding:</strong> Claude Opus in Claude Code</li>
+        <li><strong>Prototyping &amp; automations:</strong> Codex + GPT-5.5 high</li>
+        <li><strong>Writing:</strong> Claude Sonnet fast, Claude Opus deep</li>
+        <li><strong>Research &amp; learning:</strong> NotebookLM for sources, Claude for synthesis</li>
+      </ul>
     </div>
-    <aside class="current" aria-label="Current default">
-      <h2>Current default</h2>
-      <p>Claude Opus for coding. Codex plus GPT-5.5 high for prototyping and automations. Claude Sonnet for fast writing. Claude Opus for deeper writing, research, and UX reasoning.</p>
-    </aside>
+    <nav class="nav" aria-label="Page sections">
+      <a href="#reference">Reference</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#notes">Notes</a>
+      <a href="#creators">Creators</a>
+    </nav>
   </header>
 
   <main>
-    <section id="timeline">
-      <div class="section-head">
-        <h2>Preference Timeline</h2>
-      </div>
-      <div class="timeline-grid">
-        <article class="timeline-card">
-          <time>Late 2022</time>
-          <h3>ChatGPT start</h3>
-          <p>First default once ChatGPT came out.</p>
-        </article>
-        <article class="timeline-card">
-          <time>Feb 2026</time>
-          <h3>Opus 4.6 phase</h3>
-          <p>Switched to Claude Opus 4.6. The 1M context version was especially strong for large coding and source-heavy work.</p>
-        </article>
-        <article class="timeline-card">
-          <time>Early May 2026</time>
-          <h3>Codex shift</h3>
-          <p>Codex plus GPT-5.5 became the coding default because the harness, worktrees, and repo UX were better.</p>
-        </article>
-        <article class="timeline-card">
-          <time>Now</time>
-          <h3>Opus back for coding</h3>
-          <p>Claude Opus is the coding default again. Codex plus GPT-5.5 high stays in rotation for prototyping and automations. NotebookLM for source-grounded learning and podcasts.</p>
-        </article>
-      </div>
-    </section>
-
     <section id="reference">
       <div class="section-head">
-        <h2>Reference Table</h2>
+        <h2>Reference</h2>
       </div>
       <div class="table-wrap">
         <table>
@@ -312,127 +294,172 @@ footer{
             <tr>
               <th>Use case</th>
               <th>Tool</th>
-              <th>Why this tool</th>
-              <th>Links</th>
+              <th>Open</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td data-label="Use case">Coding, debugging, repo work</td>
-              <td data-label="Tool">Claude Code CLI + Opus</td>
-              <td data-label="Why this tool">Current coding default. Opus reasoning quality on real repo changes is the deciding factor, and the large-context window holds up across source-heavy work.</td>
-              <td data-label="Links">
+              <td data-label="Tool">
+                <span class="tool-name">Claude Code CLI + Opus</span>
+                <span class="why">Opus reasoning on real repo changes; large context holds across source-heavy work.</span>
+              </td>
+              <td data-label="Open">
                 <span class="link-list">
-                  <span><a href="https://claude.com/product/claude-code" target="_blank" rel="noopener noreferrer">Claude Code</a><span class="link-note">Claude's coding CLI and agent surface.</span></span>
-                  <span><a href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Agent-ready repo kit</a><span class="link-note">My repo setup for reliable agent behavior.</span></span>
+                  <a href="https://claude.com/product/claude-code" target="_blank" rel="noopener noreferrer">Claude Code</a>
+                  <a href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Repo kit</a>
                 </span>
               </td>
             </tr>
             <tr>
               <td data-label="Use case">Prototyping and automations</td>
-              <td data-label="Tool">Codex + GPT-5.5 high</td>
-              <td data-label="Why this tool">Best for spinning up prototypes, scripts, and automation glue. The harness, worktrees, and shell access make iteration fast when the goal is throwaway or scaffold work, not deep repo changes.</td>
-              <td data-label="Links">
+              <td data-label="Tool">
+                <span class="tool-name">Codex + GPT-5.5 high</span>
+                <span class="why">Harness, worktrees, and shell access make scaffold and glue work fast.</span>
+              </td>
+              <td data-label="Open">
                 <span class="link-list">
-                  <span><a href="https://developers.openai.com/codex" target="_blank" rel="noopener noreferrer">Codex docs</a><span class="link-note">What Codex is and how the coding surface works.</span></span>
-                  <span><a href="https://github.com/ek0212/second-brain-template" target="_blank" rel="noopener noreferrer">Second-brain template</a><span class="link-note">My repo pattern for personal knowledge and backlog workflows.</span></span>
+                  <a href="https://developers.openai.com/codex" target="_blank" rel="noopener noreferrer">Codex</a>
+                  <a href="https://github.com/ek0212/second-brain-template" target="_blank" rel="noopener noreferrer">Template</a>
                 </span>
               </td>
             </tr>
             <tr>
               <td data-label="Use case">Writing, editing, deep research</td>
-              <td data-label="Tool">Claude Chat</td>
-              <td data-label="Why this tool">Sonnet is the fast writing model. Opus is the thorough writing and reasoning model. For deep research, I use NotebookLM when sources are the center and Claude extra reasoning when synthesis is the center.</td>
-              <td data-label="Links">
+              <td data-label="Tool">
+                <span class="tool-name">Claude Chat</span>
+                <span class="why">Sonnet fast, Opus thorough. NotebookLM when sources lead; Claude when synthesis leads.</span>
+              </td>
+              <td data-label="Open">
                 <span class="link-list">
-                  <span><a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a><span class="link-note">Main writing, editing, and reasoning surface.</span></span>
+                  <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a>
                 </span>
               </td>
             </tr>
             <tr>
               <td data-label="Use case">Custom UX and user-facing design</td>
-              <td data-label="Tool">Claude Design / Claude + frontend-design skill</td>
-              <td data-label="Why this tool">Claude is still better for user-facing UX and interface taste. The frontend-design skill makes the design brief concrete and keeps output from becoming generic.</td>
-              <td data-label="Links">
+              <td data-label="Tool">
+                <span class="tool-name">Claude + frontend-design skill</span>
+                <span class="why">Claude is better for interface taste; the skill keeps output from going generic.</span>
+              </td>
+              <td data-label="Open">
                 <span class="link-list">
-                  <span><a href="https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md" target="_blank" rel="noopener noreferrer">Frontend-design skill</a><span class="link-note">Skill prompt for distinctive, production-grade frontend work.</span></span>
-                  <span><a href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Agent-ready repo kit</a><span class="link-note">My repo setup for reliable agent behavior.</span></span>
+                  <a href="https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md" target="_blank" rel="noopener noreferrer">Skill</a>
+                  <a href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Repo kit</a>
                 </span>
               </td>
             </tr>
             <tr>
               <td data-label="Use case">Images, visual ideation, custom GPTs</td>
-              <td data-label="Tool">ChatGPT</td>
-              <td data-label="Why this tool">Best for image generation, especially with the latest image model and custom GPT workflows. Also useful for reusable learning assistants and quick visual iteration.</td>
-              <td data-label="Links">
+              <td data-label="Tool">
+                <span class="tool-name">ChatGPT</span>
+                <span class="why">Best image generation and custom-GPT workflows.</span>
+              </td>
+              <td data-label="Open">
                 <span class="link-list">
-                  <span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><span class="link-note">Image generation, custom GPTs, and general GPT-5.5 chat.</span></span>
+                  <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a>
                 </span>
               </td>
             </tr>
             <tr>
               <td data-label="Use case">Learning, documents, podcasts</td>
-              <td data-label="Tool">NotebookLM</td>
-              <td data-label="Why this tool">Best when the source material matters. I use it for documents, books, papers, and turning source packets into podcast-style audio summaries.</td>
-              <td data-label="Links">
+              <td data-label="Tool">
+                <span class="tool-name">NotebookLM</span>
+                <span class="why">Documents, books, papers; turns source packets into audio summaries.</span>
+              </td>
+              <td data-label="Open">
                 <span class="link-list">
-                  <span><a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a><span class="link-note">Source-grounded notebooks and audio summaries.</span></span>
+                  <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a>
                 </span>
               </td>
             </tr>
             <tr>
               <td data-label="Use case">Apple integrations and iMessage</td>
-              <td data-label="Tool">Claude Cowork</td>
-              <td data-label="Why this tool">Useful because it can work with iMessage and Apple-adjacent workflows. Caveat: use deterministic local scripts or Codex for fetching and prep when network constraints matter.</td>
-              <td data-label="Links">
+              <td data-label="Tool">
+                <span class="tool-name">Claude Cowork</span>
+                <span class="why">Works with iMessage and Apple-adjacent flows. Use local scripts or Codex for deterministic prep.</span>
+              </td>
+              <td data-label="Open">
                 <span class="link-list">
-                  <span><a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a><span class="link-note">Claude account and Cowork access point.</span></span>
-                  <span><a href="https://support.apple.com/guide/terminal/script-management-with-launchd-apdc6c1077b-5d5d-4d35-9c19-60f2397b2369/mac" target="_blank" rel="noopener noreferrer">launchd</a><span class="link-note">Local scheduled scripts for deterministic prep work.</span></span>
+                  <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a>
+                  <a href="https://support.apple.com/guide/terminal/script-management-with-launchd-apdc6c1077b-5d5d-4d35-9c19-60f2397b2369/mac" target="_blank" rel="noopener noreferrer">launchd</a>
                 </span>
               </td>
             </tr>
             <tr>
               <td data-label="Use case">Quick presentations</td>
-              <td data-label="Tool">Gamma</td>
-              <td data-label="Why this tool">Fastest option for turning rough content into a presentable deck. I have not tested it as deeply as the core coding and writing stack.</td>
-              <td data-label="Links">
+              <td data-label="Tool">
+                <span class="tool-name">Gamma</span>
+                <span class="why">Fastest path from rough content to a presentable deck.</span>
+              </td>
+              <td data-label="Open">
                 <span class="link-list">
-                  <span><a href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Gamma</a><span class="link-note">Quick AI presentation drafts.</span></span>
+                  <a href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Gamma</a>
                 </span>
               </td>
             </tr>
             <tr>
               <td data-label="Use case">Project starts and stress tests</td>
-              <td data-label="Tool">Clarity Agent</td>
-              <td data-label="Why this tool">Useful for scaffolding, project initialization, and edge-case passes after a project exists.</td>
-              <td data-label="Links">
+              <td data-label="Tool">
+                <span class="tool-name">Clarity Agent</span>
+                <span class="why">Scaffolding, project init, and edge-case passes once a project exists.</span>
+              </td>
+              <td data-label="Open">
                 <span class="link-list">
-                  <span><a href="https://github.com/microsoft/clarity-agent" target="_blank" rel="noopener noreferrer">Clarity Agent</a><span class="link-note">Microsoft's agent for project clarity and stress testing.</span></span>
+                  <a href="https://github.com/microsoft/clarity-agent" target="_blank" rel="noopener noreferrer">Clarity</a>
                 </span>
               </td>
             </tr>
             <tr>
               <td data-label="Use case">Speech to text</td>
-              <td data-label="Tool">Wispr Flow</td>
-              <td data-label="Why this tool">Best dictation pick when speaking is faster than typing and I want to capture the rough thought quickly.</td>
-              <td data-label="Links">
+              <td data-label="Tool">
+                <span class="tool-name">Wispr Flow</span>
+                <span class="why">Dictation when speaking is faster than typing.</span>
+              </td>
+              <td data-label="Open">
                 <span class="link-list">
-                  <span><a href="https://www.wispr.ai/" target="_blank" rel="noopener noreferrer">Wispr Flow</a><span class="link-note">Dictation and speech-to-text app.</span></span>
+                  <a href="https://www.wispr.ai/" target="_blank" rel="noopener noreferrer">Wispr</a>
                 </span>
               </td>
             </tr>
             <tr>
               <td data-label="Use case">Human-first tasks</td>
-              <td data-label="Tool">Personal methods</td>
-              <td data-label="Why this tool">Email, meeting notes, travel planning, and recipes should not be fully outsourced. Use AI for cleanup, comparison, scaling, or scanning.</td>
-              <td data-label="Links">
+              <td data-label="Tool">
+                <span class="tool-name">Personal methods</span>
+                <span class="why">Email, meeting notes, travel, recipes. Use AI for cleanup, comparison, or scanning, not the whole task.</span>
+              </td>
+              <td data-label="Open">
                 <span class="link-list">
-                  <span><a href="https://ek0212.github.io/eves-ai-guide/" target="_blank" rel="noopener noreferrer">This guide</a><span class="link-note">The public reference page itself.</span></span>
+                  <a href="https://ek0212.github.io/eves-ai-guide/" target="_blank" rel="noopener noreferrer">This guide</a>
                 </span>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <div class="section-head">
+        <h2>Timeline</h2>
+      </div>
+      <div class="timeline-strip">
+        <article class="timeline-step">
+          <time>Late 2022</time>
+          <h3>ChatGPT becomes the default</h3>
+        </article>
+        <article class="timeline-step">
+          <time>Feb 2026</time>
+          <h3>Claude Opus 4.6, 1M context</h3>
+        </article>
+        <article class="timeline-step">
+          <time>May 2026</time>
+          <h3>Codex + GPT-5.5 takes coding</h3>
+        </article>
+        <article class="timeline-step">
+          <time>Now</time>
+          <h3>Opus back for coding</h3>
+        </article>
       </div>
     </section>
 
@@ -442,15 +469,15 @@ footer{
       </div>
       <div class="note-grid">
         <article class="note-card">
-          <h3>Opus pricing note</h3>
-          <p>Anthropic lists Opus 4.6 at $5 input / $25 output per million tokens, says Opus 4.7 stayed the same as 4.6, and says Opus 4.8 regular usage is unchanged from 4.7. Check current pricing before citing. <a href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noopener noreferrer">4.8 source</a>, <a href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank" rel="noopener noreferrer">4.7 source</a>, <a href="https://www.anthropic.com/news/claude-opus-4-6" target="_blank" rel="noopener noreferrer">4.6 source</a>.</p>
+          <h3>Opus pricing</h3>
+          <p>Opus 4.6 / 4.7 / 4.8 all priced at $5 input / $25 output per million tokens. Verify before citing. <a href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noopener noreferrer">4.8</a>, <a href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank" rel="noopener noreferrer">4.7</a>, <a href="https://www.anthropic.com/news/claude-opus-4-6" target="_blank" rel="noopener noreferrer">4.6</a>.</p>
         </article>
         <article class="note-card">
           <h3>Harness matters</h3>
-          <p>For coding, the model is only part of the choice. Claude Code plus Opus wins for serious repo work. Codex plus GPT-5.5 high still wins for fast prototyping and automations.</p>
+          <p>Model is only half the choice. Claude Code + Opus for serious repo work; Codex + GPT-5.5 high for fast prototyping.</p>
         </article>
         <article class="note-card">
-          <h3>Deep research split</h3>
+          <h3>Research split</h3>
           <p>NotebookLM when sources are the center. Claude extra reasoning when synthesis and judgment are the center.</p>
         </article>
       </div>
