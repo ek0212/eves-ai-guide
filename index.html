@@ -128,6 +128,8 @@ section:last-of-type{border-bottom:0}
   box-shadow:0 12px 35px rgba(24,29,44,.08);
 }
 table{width:100%;border-collapse:collapse}
+tr[id]{scroll-margin-top:24px}
+tr[id]:target{background:rgba(194,65,12,.06)}
 th{
   background:var(--soft);
   color:var(--accent);
@@ -351,11 +353,11 @@ footer{
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr id="row-coding-opus">
               <td data-label="Use case"><span class="use-emoji">🛠️</span>Coding, debugging, repo work</td>
               <td data-label="Tool">
                 <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=claude.com&sz=64" alt="">Claude Opus latest high in Claude Code CLI</span>
-                <span class="why">Alternate between Opus latest and Codex + GPT latest high. Opus for deep repo reasoning and large-context source-heavy work; Codex when the harness wins.</span>
+                <span class="why">Alternate between Opus latest and <a href="#row-codex-prototyping">Codex + GPT latest high</a>. Opus for deep repo reasoning and large-context source-heavy work; <a href="#row-codex-prototyping">Codex</a> when the harness wins.</span>
               </td>
               <td data-label="Links">
                 <span class="link-list">
@@ -364,7 +366,7 @@ footer{
                 </span>
               </td>
             </tr>
-            <tr>
+            <tr id="row-codex-prototyping">
               <td data-label="Use case"><span class="use-emoji">⚡</span>Prototyping and automations</td>
               <td data-label="Tool">
                 <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="">Codex + GPT latest high</span>
@@ -377,11 +379,11 @@ footer{
                 </span>
               </td>
             </tr>
-            <tr>
+            <tr id="row-writing-claude">
               <td data-label="Use case"><span class="use-emoji">✍️</span>Writing, editing, deep research</td>
               <td data-label="Tool">
                 <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" alt="">Claude Chat</span>
-                <span class="why">Sonnet fast, Opus thorough. NotebookLM when sources lead; Claude when synthesis leads.</span>
+                <span class="why">Sonnet fast, Opus thorough. <a href="#row-notebooklm">NotebookLM</a> when sources lead; Claude when synthesis leads.</span>
               </td>
               <td data-label="Links">
                 <span class="link-list">
@@ -415,7 +417,7 @@ footer{
                 </span>
               </td>
             </tr>
-            <tr>
+            <tr id="row-notebooklm">
               <td data-label="Use case"><span class="use-emoji">📚</span>Learning, documents, podcasts</td>
               <td data-label="Tool">
                 <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=notebooklm.google.com&sz=64" alt="">NotebookLM</span>
@@ -427,11 +429,11 @@ footer{
                 </span>
               </td>
             </tr>
-            <tr>
+            <tr id="row-apple">
               <td data-label="Use case"><span class="use-emoji">🍎</span>Apple integrations and iMessage</td>
               <td data-label="Tool">
                 <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" alt="">Claude Cowork</span>
-                <span class="why">Used for automations across iMessage and Apple-adjacent flows: trigger and monitor Claude Code tasks from your phone via the official iMessage plugin.</span>
+                <span class="why">Only assistant that natively delivers iMessage automations: runs locally on macOS and hooks the Messages database via the official iMessage plugin. Use it when the automation needs Apple-side reach (texts, Shortcuts, local files) that <a href="#row-codex-automation">Codex's cloud sandbox</a> can't touch.</span>
               </td>
               <td data-label="Links">
                 <span class="link-list">
@@ -441,11 +443,11 @@ footer{
                 </span>
               </td>
             </tr>
-            <tr>
+            <tr id="row-codex-automation">
               <td data-label="Use case"><span class="use-emoji">🔌</span>Scheduled automations and connectors</td>
               <td data-label="Tool">
                 <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="">Codex / ChatGPT</span>
-                <span class="why">Scheduled tasks for recurring prompts and connectors for Gmail, Drive, Calendar, GitHub, and more pull real context into runs without manual paste.</span>
+                <span class="why">Runs in OpenAI's cloud sandbox with permissive defaults, so scheduled tasks, web search, and connectors (Gmail, Drive, Calendar, GitHub, etc.) execute end-to-end without the per-action permission prompts you hit on a local agent. Trade-off: no access to local files or Apple flows, use <a href="#row-apple">Claude Cowork</a> for those.</span>
               </td>
               <td data-label="Links">
                 <span class="link-list">
