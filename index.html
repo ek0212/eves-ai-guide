@@ -3,611 +3,992 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Eve's AI Guide</title>
+<title>Eve's AI Guide — Field Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f1e5;
-  --ink:#181d2c;
-  --muted:#5a5a6b;
-  --line:#e3d9c2;
-  --panel:#fbf6e8;
-  --soft:#efe5cd;
-  --accent:#c2410c;
-  --accent-soft:#fed7aa;
-  --display:"Fraunces",Georgia,"Iowan Old Style",serif;
-  --body:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-  --shadow:0 18px 60px rgba(24,29,44,.08);
+  --frame:#8AA0D8;
+  --paper:#F3EAD1;
+  --sheet:#FBF6E6;
+  --sand:#EAE0C6;
+  --ink:#221D16;
+  --ink-soft:#4A443A;
+  --muted:#6E685C;
+  --rust:#B0532F;
+  --line:#E4D9B9;
+  --line-soft:#EFE6CB;
+  --accent:#B25C3A;
+  --accent-tint:#ECD9CB;
+  --title-style:italic;
+  --hscale:1;
+  --serif:"Cormorant",Georgia,"Times New Roman",serif;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+  --mono:"Space Mono",ui-monospace,"SF Mono",Menlo,monospace;
 }
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
+*{box-sizing:border-box}
+html,body{
   margin:0;
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 92% 0%, rgba(194,65,12,.10), transparent 32rem),
-    radial-gradient(circle at 8% 100%, rgba(24,29,44,.08), transparent 30rem),
-    linear-gradient(180deg,#f6f1e5 0%,#f8f3e8 55%,#efe5cd 100%);
+  background:var(--frame);
   color:var(--ink);
-  font-family:var(--body);
-  font-size:16.5px;
-  line-height:1.55;
+  font-family:var(--sans);
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
-a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
-.page{max-width:1080px;margin:0 auto;padding:30px 20px 46px}
-.hero{
-  padding:36px 0 24px;
-  border-bottom:1px solid var(--line);
+a{color:inherit}
+.lk{
+  color:var(--rust);
+  text-decoration:underline;
+  text-decoration-thickness:1.5px;
+  text-underline-offset:2.5px;
+  text-decoration-color:rgba(192,67,42,.45);
+  transition:text-decoration-color .15s ease;
 }
-.eyebrow{
-  color:var(--accent);
-  font:700 .72rem/1.2 var(--body);
-  letter-spacing:.14em;
-  text-transform:uppercase;
-}
-h1{
-  margin:10px 0 22px;
-  font-family:var(--display);
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(2.6rem,6.4vw,5.2rem);
-  line-height:.92;
-  font-weight:500;
-  letter-spacing:-.022em;
-  color:var(--ink);
-}
-.section-head h2{
-  font-family:var(--display);
-  font-variation-settings:"opsz" 80;
-  letter-spacing:-.015em;
-}
-.now{
-  background:var(--ink);
-  color:#fbf6e8;
-  border-radius:10px;
-  box-shadow:var(--shadow);
-  padding:18px 22px;
-  display:grid;
-  grid-template-columns:auto 1fr;
-  gap:18px;
-  align-items:start;
-}
-.now-label{
-  color:var(--accent-soft);
-  font:700 .7rem/1.2 ui-sans-serif,system-ui,sans-serif;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  padding-top:4px;
-  white-space:nowrap;
-}
-.now-list{
-  margin:0;
-  padding:0;
-  list-style:none;
-  display:grid;
-  gap:7px;
-  font-size:.98rem;
-  line-height:1.45;
-}
-.now-list strong{color:var(--accent-soft);font-weight:600}
-.nav{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:22px;
-}
-.nav a{
-  min-height:32px;
-  display:inline-flex;
-  align-items:center;
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:rgba(251,246,232,.78);
-  color:var(--ink);
-  padding:6px 12px;
-  font:800 .72rem/1 ui-sans-serif,system-ui,sans-serif;
-}
-section{padding:28px 0;border-bottom:1px solid var(--line)}
-section:last-of-type{border-bottom:0}
-.section-head{margin-bottom:14px}
-.section-head h2{
-  margin:0;
-  font-size:clamp(1.55rem,2.6vw,2.2rem);
-  line-height:1;
-  font-weight:500;
-}
-.table-wrap{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:8px;
-  overflow:hidden;
-  box-shadow:0 12px 35px rgba(24,29,44,.08);
-}
-table{width:100%;border-collapse:collapse}
-tr[id]{scroll-margin-top:24px}
-tr[id]:target{background:rgba(194,65,12,.06)}
-th{
-  background:var(--soft);
-  color:var(--accent);
-  text-align:left;
-  padding:11px 14px;
-  font:700 .7rem/1.2 var(--body);
-  letter-spacing:.1em;
-  text-transform:uppercase;
-}
-td{
-  vertical-align:top;
-  padding:14px;
-  border-top:1px solid var(--line);
-  font-size:.95rem;
-  line-height:1.45;
-}
-td:first-child{width:24%;font-weight:700}
-td:nth-child(2){width:46%}
-td:nth-child(3){width:30%}
-.tool-name{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  font-weight:700;
-  font-size:1rem;
-  margin-bottom:3px;
-}
-.tool-logo{
-  width:18px;
-  height:18px;
-  border-radius:4px;
-  background:#fff;
-  flex-shrink:0;
-  object-fit:contain;
-}
-.use-emoji{
-  display:inline-block;
-  margin-right:6px;
-  font-size:1.05em;
-}
-.why{
-  display:block;
-  color:var(--muted);
-  font-size:.88rem;
-  line-height:1.42;
-}
-.link-list{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-}
-.link-list a{
-  display:inline-flex;
-  align-items:center;
-  padding:5px 10px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:rgba(251,246,232,.78);
-  color:var(--ink);
-  font:700 .7rem/1 var(--body);
-  letter-spacing:.06em;
-  text-transform:uppercase;
-}
-.timeline-strip{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-.timeline-step{
-  flex:1 1 0;
-  min-width:180px;
-  background:rgba(251,246,232,.84);
-  border:1px solid var(--line);
-  border-radius:8px;
-  padding:10px 12px;
-}
-.timeline-step time{
-  display:block;
-  color:var(--accent);
-  font:700 .68rem/1.2 var(--body);
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  margin-bottom:4px;
-}
-.timeline-step h3{
-  margin:0;
-  font-size:.98rem;
-  line-height:1.22;
-  font-weight:600;
-}
-.note-grid,.creator-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:10px;
-}
-.creator-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
-.note-card,.creator-card{
-  background:rgba(251,246,232,.84);
-  border:1px solid var(--line);
-  border-radius:8px;
-  padding:14px;
-}
-.note-card h3,.creator-card h3{
-  margin:0 0 6px;
-  font-family:var(--display);
-  font-variation-settings:"opsz" 40;
-  font-size:1.08rem;
-  line-height:1.18;
-  font-weight:600;
-  letter-spacing:-.008em;
-}
-.timeline-step h3{
-  font-family:var(--display);
-  font-variation-settings:"opsz" 40;
-  letter-spacing:-.005em;
-}
-.note-card p,.creator-card p{
-  margin:0;
-  color:#2c2e3d;
-  font-size:.9rem;
-  line-height:1.45;
-}
-.note-card code,.now code{
+.lk:hover{text-decoration-color:var(--rust)}
+code{
   font-family:var(--mono);
   font-size:.82em;
-  background:rgba(194,65,12,.10);
-  color:var(--accent);
-  padding:1px 5px;
+  background:var(--accent-tint);
+  color:var(--rust);
+  padding:.12em .4em;
   border-radius:4px;
-  word-break:break-word;
+  white-space:nowrap;
 }
-.now code{background:rgba(254,215,170,.12);color:var(--accent-soft)}
-.creator-card a{
-  display:inline-flex;
-  margin-top:8px;
-  font:700 .7rem/1 var(--body);
+
+.wrap{
+  max-width:1160px;
+  margin:26px auto;
+  background:var(--paper);
+  border-radius:22px;
+  box-shadow:0 18px 50px -28px rgba(40,30,10,.55);
+  padding:0 40px 72px;
+}
+
+.masthead{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:16px;
+  padding:30px 4px 26px;
+  border-bottom:1px solid var(--line);
+  flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:13px}
+.brand .mark{
+  width:30px;height:30px;
+  border-radius:8px;
+  background:var(--ink);
+  color:var(--paper);
+  display:grid;place-items:center;
+  flex:0 0 auto;
+}
+.brand .mark svg{width:17px;height:17px}
+.brand .ttl{
+  font-family:var(--serif);
+  font-style:var(--title-style,italic);
+  font-weight:600;
+  font-size:23px;
+  letter-spacing:-.01em;
+}
+.brand .sub{
+  font-size:13px;
+  color:var(--muted);
+  margin-left:2px;
+}
+.masthead .stamp{
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:600;
+}
+
+/* Now banner — warm paper callout above tabs */
+.now{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:22px;
+  align-items:start;
+  margin-top:22px;
+  padding:18px 22px 18px 26px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--sand) 60%, var(--sheet)) 0%, var(--sheet) 100%);
+  color:var(--ink);
+  border:1px solid var(--line);
+  border-left:3px solid var(--rust);
+  border-radius:4px 12px 12px 4px;
+  box-shadow:0 10px 24px -22px rgba(40,30,10,.45);
+}
+.now-label{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:600;
+  font-size:18px;
+  letter-spacing:-.005em;
+  color:var(--rust);
+  padding-top:1px;
+  white-space:nowrap;
+  border-right:1px dotted rgba(176,83,47,.45);
+  padding-right:18px;
+  align-self:stretch;
+  display:flex;
+  align-items:center;
+}
+.now-list{
+  margin:0;padding:0;list-style:none;
+  display:grid;gap:6px;
+  font-size:14.5px;
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+.now-list strong{color:var(--ink);font-weight:700}
+.now-list li::before{
+  content:"·";
+  color:var(--rust);
+  font-weight:700;
+  margin-right:8px;
+}
+
+/* folder tabs */
+.tabs{
+  display:flex;
+  align-items:flex-end;
+  gap:0;
+  padding:40px 6px 0;
+  position:relative;
+  z-index:2;
+}
+.tab{
+  appearance:none;
+  border:none;
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:17px;
+  letter-spacing:-.005em;
+  color:var(--ink);
+  cursor:pointer;
+  padding:13px 30px 16px;
+  margin-left:-14px;
+  border-radius:16px 16px 0 0;
+  position:relative;
+  transition:transform .24s ease, box-shadow .24s ease;
+  background:color-mix(in srgb, var(--c) 30%, var(--sheet));
+  transform:translateY(6px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4);
+}
+.tab:first-child{margin-left:0}
+.tab .dot{
+  display:inline-block;
+  width:9px;height:9px;
+  border-radius:50%;
+  background:var(--c);
+  margin-right:9px;
+  vertical-align:1px;
+  box-shadow:0 0 0 2px color-mix(in srgb, var(--c) 30%, #fff);
+}
+.tab:hover{transform:translateY(3px)}
+.tab.active{
+  background:var(--c);
+  transform:translateY(0);
+  z-index:5;
+  box-shadow:0 -2px 12px rgba(40,30,10,.09);
+}
+.tab.active .dot{
+  background:var(--sheet);
+  box-shadow:0 0 0 2px rgba(255,255,255,.55);
+}
+
+/* content sheet */
+.sheet{
+  background:var(--sheet);
+  border:1px solid var(--line);
+  border-top:4px solid var(--accent);
+  border-radius:4px 14px 14px 14px;
+  padding:46px 48px 52px;
+  position:relative;
+  z-index:1;
+  box-shadow:0 14px 40px -26px rgba(40,30,10,.4);
+  min-height:540px;
+}
+
+@keyframes sheetIn{
+  from{transform:translateY(9px)}
+  to{transform:translateY(0)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .panel{animation:sheetIn .3s cubic-bezier(.25,.7,.3,1) both}
+}
+.panel[hidden]{display:none}
+
+.sec-title{
+  font-family:var(--serif);
+  font-style:var(--title-style,italic);
+  font-weight:600;
+  font-size:calc(clamp(44px,5.4vw,64px) * var(--hscale,1));
+  line-height:.98;
+  letter-spacing:-.015em;
+  margin:0 0 6px;
+}
+.sec-lede{
+  color:var(--muted);
+  font-size:16px;
+  max-width:60ch;
+  margin:0 0 30px;
+  line-height:1.5;
+}
+.eyebrow{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
+
+/* reference */
+.ref-head{
+  display:grid;
+  grid-template-columns:1.05fr 1.55fr .8fr;
+  gap:36px;
+  padding:12px 20px;
+  background:var(--accent-tint);
+  border-radius:8px;
+  margin-bottom:2px;
+}
+.ref-head span{font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+
+.ref-row{
+  display:grid;
+  grid-template-columns:1.05fr 1.55fr .8fr;
+  gap:36px;
+  padding:26px 20px;
+  border-bottom:1px solid var(--line-soft);
+  align-items:start;
+  scroll-margin-top:24px;
+}
+.ref-row:last-child{border-bottom:none}
+.ref-row:target{background:color-mix(in srgb, var(--accent) 8%, transparent)}
+
+.usecase{display:flex;gap:12px;align-items:flex-start}
+.usecase .em{font-size:21px;line-height:1.2;flex:0 0 auto}
+.usecase .txt{font-weight:700;font-size:19px;line-height:1.25;padding-top:1px}
+
+.tool-head{display:flex;gap:12px;align-items:center;margin-bottom:9px}
+.tool-head .name{font-weight:700;font-size:19px;line-height:1.2}
+.tool-desc{color:var(--muted);font-size:15.5px;line-height:1.55;margin:0}
+.tool-desc + .tool-desc{margin-top:8px}
+
+.icon-tile{
+  width:30px;height:30px;
+  border-radius:8px;
+  flex:0 0 auto;
+  display:grid;place-items:center;
+  background:var(--ink);
+}
+.icon-tile img{width:18px;height:18px;display:block;border-radius:3px;background:#fff}
+.icon-tile.claude,.icon-tile.anthropic{background:#B25C3A}
+.icon-tile.openai{background:#2C3550}
+.icon-tile.notebooklm{background:#3F6FB2}
+.icon-tile.gamma{background:#7A4DCE}
+.icon-tile.microsoft{background:#2C3550}
+.icon-tile.wispr{background:#1F8A5B}
+.icon-tile.none{background:var(--accent-tint)}
+.icon-tile.none::after{content:"·";color:var(--rust);font-weight:700;font-size:20px;line-height:0}
+
+.links{display:flex;flex-wrap:wrap;gap:8px;padding-top:2px}
+.pill{
+  font-size:12px;
+  font-weight:700;
   letter-spacing:.07em;
   text-transform:uppercase;
+  color:var(--ink-soft);
+  background:var(--sheet);
+  border:1px solid var(--line);
+  padding:7px 13px;
+  border-radius:100px;
+  cursor:pointer;
+  white-space:nowrap;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  transition:all .15s ease;
 }
+.pill:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+  background:color-mix(in srgb, var(--accent) 8%, var(--sheet));
+}
+
+/* timeline */
+.tl-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin-top:8px;
+}
+.tl-card{
+  background:var(--sheet);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:22px 22px 26px;
+  position:relative;
+  overflow:hidden;
+}
+.tl-card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:var(--accent);
+}
+.tl-when{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.tl-what{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.12;letter-spacing:-.005em}
+
+.tl-rail{
+  display:flex;align-items:center;gap:0;
+  margin:30px 4px 0;
+}
+.tl-rail .seg{flex:1;height:2px;background:var(--line)}
+.tl-rail .node{
+  width:12px;height:12px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--accent);flex:0 0 auto;
+}
+.tl-rail .node:last-child{background:var(--accent)}
+
+/* notes — bullet journal */
+#panel-notes{position:relative}
+#panel-notes::before{
+  content:"";
+  position:absolute;
+  inset:-46px -48px -52px -48px;
+  background-image:radial-gradient(circle, rgba(34,29,22,.22) 1px, transparent 1.4px);
+  background-size:22px 22px;
+  background-position:11px 11px;
+  opacity:.45;
+  pointer-events:none;
+  z-index:0;
+}
+#panel-notes > *{position:relative;z-index:1}
+
+.notes-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  align-items:start;
+  gap:28px 22px;
+  margin-top:18px;
+}
+.note{
+  background:#FBF6E6;
+  border:1px solid rgba(34,29,22,.16);
+  border-radius:3px;
+  padding:30px 22px 24px;
+  position:relative;
+  box-shadow:
+    0 1px 0 rgba(34,29,22,.04),
+    0 18px 28px -22px rgba(40,30,10,.35);
+}
+/* washi tape */
+.note::before{
+  content:"";
+  position:absolute;
+  top:-11px;
+  left:20px;
+  width:84px;
+  height:22px;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.35) 0 6px, transparent 6px 12px),
+    var(--tape, var(--accent-tint));
+  box-shadow:0 3px 6px -3px rgba(40,30,10,.3);
+  transform:rotate(-3deg);
+  opacity:.92;
+}
+.note:nth-child(4n+1){--tape:#ECD9CB}
+.note:nth-child(4n+2){--tape:#DFE5F3}
+.note:nth-child(4n+3){--tape:#E8E7C7}
+.note:nth-child(4n)  {--tape:#F4DFD1}
+.note:nth-child(3n)  {transform:rotate(-.45deg)}
+.note:nth-child(3n+1){transform:rotate(.3deg)}
+.note:nth-child(3n+2){transform:rotate(-.15deg)}
+.note:nth-child(7n+2)::before{left:auto;right:18px;transform:rotate(4deg);width:70px}
+
+.note h3{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:600;
+  font-size:23px;
+  letter-spacing:-.005em;
+  line-height:1.15;
+  margin:0 0 14px;
+  padding-bottom:8px;
+  border-bottom:2px dotted rgba(176,83,47,.5);
+  color:var(--ink);
+}
+.note p,.note li{
+  color:var(--ink-soft);
+  font-size:14.5px;
+  line-height:1.65;
+  margin:0;
+}
+.note p + p{margin-top:10px}
+.note p strong{color:var(--ink);font-weight:700}
+
+/* bujo signifier list — circled numbers */
+.note ol{
+  list-style:none;
+  margin:14px 0 0;
+  padding:0;
+  counter-reset:bujo;
+  display:grid;
+  gap:11px;
+}
+.note ol li{
+  position:relative;
+  padding-left:30px;
+  counter-increment:bujo;
+}
+.note ol li::before{
+  content:counter(bujo);
+  position:absolute;
+  left:0;
+  top:1px;
+  width:20px;
+  height:20px;
+  border:1.5px solid var(--accent);
+  color:var(--accent);
+  border-radius:50%;
+  font-family:var(--mono);
+  font-size:10.5px;
+  font-weight:700;
+  display:grid;
+  place-items:center;
+  line-height:1;
+  background:#FBF6E6;
+}
+
+.note code{
+  background:rgba(176,83,47,.12);
+  border:1px dashed rgba(176,83,47,.35);
+  font-size:.8em;
+}
+
+/* creators */
+.cr-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:18px;
+  margin-top:8px;
+}
+.cr-card{
+  background:var(--sheet);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:22px 22px 20px;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.cr-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--accent);
+  box-shadow:0 16px 30px -20px rgba(40,30,10,.45);
+}
+.cr-avatar{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:var(--accent-tint);
+  border:1px solid var(--line);
+  overflow:hidden;
+  margin-bottom:14px;
+  display:grid;
+  place-items:center;
+  box-shadow:0 4px 10px -6px rgba(40,30,10,.4);
+}
+.cr-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.cr-name{font-family:var(--serif);font-weight:600;font-size:25px;letter-spacing:-.005em;line-height:1.1;margin-bottom:6px}
+.cr-role{color:var(--muted);font-size:15.5px;margin-bottom:18px}
+.cr-open{
+  font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  border-bottom:2px solid var(--accent);padding-bottom:2px;
+}
+.cr-open:hover{color:var(--rust)}
+
 footer{
-  padding-top:18px;
+  margin-top:30px;
+  padding:0 4px;
   color:var(--muted);
-  font:700 .72rem/1.5 var(--body);
-  letter-spacing:.08em;
+  font-size:11px;
+  letter-spacing:.14em;
   text-transform:uppercase;
+  font-weight:700;
 }
-@media(max-width:920px){
-  .note-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .creator-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+/* responsive */
+@media (max-width:920px){
+  .tl-grid{grid-template-columns:repeat(2,1fr)}
+  .notes-grid{grid-template-columns:repeat(2,1fr)}
+  .cr-grid{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:760px){
-  .page{padding:18px 14px 34px}
-  .hero{padding:28px 0 20px}
-  .now{grid-template-columns:1fr;gap:10px;padding:16px}
-  .nav a{flex:1 1 auto;justify-content:center}
-  .note-grid,.creator-grid{grid-template-columns:1fr}
-  .timeline-step{flex-basis:100%}
-  .table-wrap{background:transparent;border:0;box-shadow:none;border-radius:0}
-  table,tbody,tr,td{display:block;width:100%}
-  thead{display:none}
-  tr{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:8px;
-    margin-bottom:10px;
-    box-shadow:0 12px 35px rgba(24,29,44,.08);
-  }
-  td{
-    width:100% !important;
-    padding:12px 14px;
-    border-top:0;
-    font-size:.95rem;
-  }
-  td+td{border-top:1px solid var(--line)}
-  td::before{
-    content:attr(data-label);
-    display:block;
-    margin-bottom:5px;
-    color:var(--accent);
-    font:700 .66rem/1.2 var(--body);
-    letter-spacing:.1em;
-    text-transform:uppercase;
-  }
+@media (max-width:720px){
+  .wrap{padding:0 18px 60px}
+  .sheet{padding:32px 22px 38px}
+  .tab{padding:11px 18px 14px;font-size:15px}
+  .now{grid-template-columns:1fr;gap:10px;padding:14px 16px}
+  .ref-head{display:none}
+  .ref-row{grid-template-columns:1fr;gap:14px;padding:22px 4px}
+  .tl-grid,.cr-grid,.notes-grid{grid-template-columns:1fr}
+  .tl-rail{display:none}
 }
 </style>
 </head>
 <body>
-<div class="page">
-  <header class="hero">
-    <div class="eyebrow">Eve Kazarian</div>
-    <h1>The AI Guide</h1>
-    <div class="now" aria-label="Current defaults">
-      <span class="now-label">Now</span>
-      <ul class="now-list">
-        <li><strong>Coding:</strong> Alternate between Opus latest in Claude Code CLI and Codex + GPT latest high</li>
-        <li><strong>Prototyping &amp; automations:</strong> Codex + GPT latest high</li>
-        <li><strong>Writing:</strong> Claude Sonnet fast, Claude Opus deep</li>
-        <li><strong>Research &amp; learning:</strong> NotebookLM for sources, Claude for synthesis</li>
-      </ul>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4.2c.4 0 .79.16 1.07.44L11 8h8.5A1.5 1.5 0 0 1 21 9.5V17a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17V7.5Z" fill="currentColor"/></svg>
+      </span>
+      <span>
+        <span class="ttl">Eve's AI Guide</span>
+        <span class="sub">  ·  A working field guide</span>
+      </span>
     </div>
-    <nav class="nav" aria-label="Page sections">
-      <a href="#reference">Reference</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#notes">Notes</a>
-      <a href="#creators">Creators</a>
-    </nav>
+    <span class="stamp">Updated June 2026</span>
   </header>
 
-  <main>
-    <section id="reference">
-      <div class="section-head">
-        <h2>Reference</h2>
+  <aside class="now" aria-label="Current defaults">
+    <span class="now-label">Now</span>
+    <ul class="now-list">
+      <li><strong>Coding:</strong> Alternate Opus latest in Claude Code CLI and Codex + GPT latest high</li>
+      <li><strong>Prototyping &amp; automations:</strong> Codex + GPT latest high</li>
+      <li><strong>Writing:</strong> Claude Sonnet fast, Claude Opus deep</li>
+      <li><strong>Research &amp; learning:</strong> NotebookLM for sources, Claude for synthesis</li>
+    </ul>
+  </aside>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab active" role="tab" aria-selected="true" aria-controls="panel-reference" id="tab-reference" data-tab="reference" style="--c:#B25C3A;z-index:20">
+      <span class="dot"></span>Reference
+    </button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="panel-timeline" id="tab-timeline" data-tab="timeline" style="--c:#7E97D2;z-index:3">
+      <span class="dot"></span>Timeline
+    </button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="panel-notes" id="tab-notes" data-tab="notes" style="--c:#969637;z-index:2">
+      <span class="dot"></span>Notes
+    </button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="panel-creators" id="tab-creators" data-tab="creators" style="--c:#DC8A6B;z-index:1">
+      <span class="dot"></span>Creators
+    </button>
+  </nav>
+
+  <main class="sheet" role="tabpanel">
+
+    <!-- Reference -->
+    <section class="panel" id="panel-reference" role="tabpanel" aria-labelledby="tab-reference">
+      <h1 class="sec-title">Reference</h1>
+      <p class="sec-lede">Which tool to reach for, by use case — and the harness it lives in.</p>
+
+      <div class="ref-head">
+        <span>Use case</span><span>Tool</span><span>Links</span>
       </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Use case</th>
-              <th>Tool</th>
-              <th>Links</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr id="row-coding-opus">
-              <td data-label="Use case"><span class="use-emoji">🛠️</span>Coding, debugging, repo work</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=claude.com&sz=64" alt="">Claude Opus latest high in Claude Code CLI</span>
-                <span class="why">Alternate between Opus latest and <a href="#row-codex-prototyping">Codex + GPT latest high</a>. Opus for deep repo reasoning and large-context source-heavy work; <a href="#row-codex-prototyping">Codex</a> when the harness wins.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://claude.com/product/claude-code" target="_blank" rel="noopener noreferrer">Claude Code</a>
-                  <a href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Repo kit</a>
-                </span>
-              </td>
-            </tr>
-            <tr id="row-agent-teams">
-              <td data-label="Use case"><span class="use-emoji">👥</span>Parallel subagents in Claude Code</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=claude.com&sz=64" alt="">Claude Code agent teams</span>
-                <span class="why">Spin up specialized subagents (researcher, builder, reviewer, etc.) that run in parallel and report back to the main thread. Use when one task splits into independent workstreams: cross-service refactors, multi-file investigations, or fan-out research where serial work would burn context.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://code.claude.com/docs/en/agent-teams" target="_blank" rel="noopener noreferrer">Agent teams docs</a>
-                </span>
-              </td>
-            </tr>
-            <tr id="row-codex-prototyping">
-              <td data-label="Use case"><span class="use-emoji">⚡</span>Prototyping and automations</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="">Codex + GPT latest high</span>
-                <span class="why">Harness is easy to use, worktrees parallelize tasks, and shell access lets it run end-to-end prototypes without large functionality bugs. Second brain is one use case: a self-maintained <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener noreferrer">LLM wiki (Karpathy)</a> the agent updates as new material comes in.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://developers.openai.com/codex" target="_blank" rel="noopener noreferrer">Codex</a>
-                  <a href="https://github.com/ek0212/second-brain-template" target="_blank" rel="noopener noreferrer">Second brain template</a>
-                </span>
-              </td>
-            </tr>
-            <tr id="row-writing-claude">
-              <td data-label="Use case"><span class="use-emoji">✍️</span>Writing, editing, deep research</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" alt="">Claude Chat</span>
-                <span class="why">Sonnet fast, Opus thorough. <a href="#row-notebooklm">NotebookLM</a> when sources lead; Claude when synthesis leads.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Use case"><span class="use-emoji">🎨</span>Custom UX and user-facing design</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="">Claude + frontend-design skill</span>
-                <span class="why">Claude is better for interface taste; the skill keeps output from going generic.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md" target="_blank" rel="noopener noreferrer">Skill</a>
-                  <a href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Repo kit</a>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Use case"><span class="use-emoji">🖼️</span>Images, visual ideation, custom GPTs</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" alt="">ChatGPT</span>
-                <span class="why">Best image generation. Custom GPTs = reusable ChatGPT configs with your own instructions, knowledge files, and actions; share a link, no code needed.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a>
-                  <a href="https://help.openai.com/en/articles/8554397-creating-a-gpt" target="_blank" rel="noopener noreferrer">Custom GPT docs</a>
-                </span>
-              </td>
-            </tr>
-            <tr id="row-notebooklm">
-              <td data-label="Use case"><span class="use-emoji">📚</span>Learning, documents, podcasts</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=notebooklm.google.com&sz=64" alt="">NotebookLM</span>
-                <span class="why">Documents, books, papers; turns source packets into audio summaries.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a>
-                </span>
-              </td>
-            </tr>
-            <tr id="row-apple">
-              <td data-label="Use case"><span class="use-emoji">🍎</span>Apple integrations and iMessage</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" alt="">Claude Cowork</span>
-                <span class="why">Only assistant that natively delivers iMessage automations: runs locally on macOS and hooks the Messages database via the official iMessage plugin. Use it when the automation needs Apple-side reach (texts, Shortcuts, local files) that <a href="#row-codex-automation">Codex's cloud sandbox</a> can't touch.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a>
-                  <a href="https://claude.com/plugins/imessage" target="_blank" rel="noopener noreferrer">iMessage plugin</a>
-                  <a href="https://github.com/anthropics/claude-plugins-official/blob/main/external_plugins/imessage/README.md" target="_blank" rel="noopener noreferrer">Docs</a>
-                </span>
-              </td>
-            </tr>
-            <tr id="row-codex-automation">
-              <td data-label="Use case"><span class="use-emoji">🔌</span>Scheduled automations and connectors</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="">Codex / ChatGPT</span>
-                <span class="why">ChatGPT side runs in OpenAI's cloud with permissive defaults, so scheduled tasks, web search, and connectors (Gmail, Drive, Calendar, GitHub, etc.) execute end-to-end without the per-action permission prompts you hit on a local agent. Codex CLI still runs locally with shell access when you need files. In practice these automations feel a lot more seamless than ones originating from <a href="#row-apple">Claude Cowork</a>. Trade-off: no native iMessage or Apple Shortcuts delivery, use <a href="#row-apple">Claude Cowork</a> for those.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://developers.openai.com/codex" target="_blank" rel="noopener noreferrer">Codex</a>
-                  <a href="https://developers.openai.com/codex/app/automations" target="_blank" rel="noopener noreferrer">Automations</a>
-                  <a href="https://help.openai.com/en/articles/11487775-connectors-in-chatgpt" target="_blank" rel="noopener noreferrer">Connectors</a>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Use case"><span class="use-emoji">📊</span>Quick presentations</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" alt="">Gamma</span>
-                <span class="why">Fastest path from rough content to a presentable deck.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Gamma</a>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Use case"><span class="use-emoji">🚀</span>Project starts and stress tests</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="">Clarity Agent</span>
-                <span class="why">Scaffolding, project init, and edge-case passes once a project exists.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://github.com/microsoft/clarity-agent" target="_blank" rel="noopener noreferrer">Clarity</a>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Use case"><span class="use-emoji">🎙️</span>Speech to text</td>
-              <td data-label="Tool">
-                <span class="tool-name"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=wispr.ai&sz=64" alt="">Wispr Flow</span>
-                <span class="why">Dictation when speaking is faster than typing.</span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list">
-                  <a href="https://www.wispr.ai/" target="_blank" rel="noopener noreferrer">Wispr</a>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Use case"><span class="use-emoji">✍️</span>Personal methods</td>
-              <td data-label="Tool">
-                <span class="tool-name">Original workflows</span>
-                <span class="why">
-                  <strong>Email drafting:</strong> write yourself using your own style rules and constraints. Keep it human.<br>
-                  <strong>Meeting notes:</strong> use whatever is native to your meeting platform.<br>
-                  <strong>Travel planning:</strong> query Claude, ChatGPT, and Gemini, then compare their top site recommendations.<br>
-                  <strong>Recipe portion adjustment:</strong> only useful for adjusting portions or scanning items. Make your own recipes.
-                </span>
-              </td>
-              <td data-label="Links">
-                <span class="link-list"></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+
+      <div class="ref-row" id="row-coding-opus">
+        <div class="usecase"><span class="em">🛠️</span><span class="txt">Coding, debugging, repo work</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile claude"><img src="https://www.google.com/s2/favicons?domain=claude.com&sz=64" alt=""></span>
+            <span class="name">Claude Opus latest high in Claude Code CLI</span>
+          </div>
+          <p class="tool-desc">Alternate between Opus latest and <a class="lk" href="#row-codex-prototyping">Codex + GPT latest high</a>. Opus for deep repo reasoning and large-context source-heavy work; <a class="lk" href="#row-codex-prototyping">Codex</a> when the harness wins.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://claude.com/product/claude-code" target="_blank" rel="noopener noreferrer">Claude Code</a>
+          <a class="pill" href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Repo Kit</a>
+        </div>
+      </div>
+
+      <div class="ref-row" id="row-agent-teams">
+        <div class="usecase"><span class="em">👥</span><span class="txt">Parallel subagents in Claude Code</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile claude"><img src="https://www.google.com/s2/favicons?domain=claude.com&sz=64" alt=""></span>
+            <span class="name">Claude Code agent teams</span>
+          </div>
+          <p class="tool-desc">Spin up specialized subagents (researcher, builder, reviewer, etc.) that run in parallel and report back to the main thread. Use when one task splits into independent workstreams: cross-service refactors, multi-file investigations, or fan-out research where serial work would burn context.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://code.claude.com/docs/en/agent-teams" target="_blank" rel="noopener noreferrer">Agent Teams Docs</a>
+        </div>
+      </div>
+
+      <div class="ref-row" id="row-codex-prototyping">
+        <div class="usecase"><span class="em">⚡</span><span class="txt">Prototyping and automations</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile openai"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt=""></span>
+            <span class="name">Codex + GPT latest high</span>
+          </div>
+          <p class="tool-desc">Harness is easy to use, worktrees parallelize tasks, and shell access lets it run end-to-end prototypes without large functionality bugs. Second brain is one use case: a self-maintained <a class="lk" href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener noreferrer">LLM wiki (Karpathy)</a> the agent updates as new material comes in.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://developers.openai.com/codex" target="_blank" rel="noopener noreferrer">Codex</a>
+          <a class="pill" href="https://github.com/ek0212/second-brain-template" target="_blank" rel="noopener noreferrer">Second Brain Template</a>
+        </div>
+      </div>
+
+      <div class="ref-row" id="row-writing-claude">
+        <div class="usecase"><span class="em">✍️</span><span class="txt">Writing, editing, deep research</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile claude"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" alt=""></span>
+            <span class="name">Claude Chat</span>
+          </div>
+          <p class="tool-desc">Sonnet fast, Opus thorough. <a class="lk" href="#row-notebooklm">NotebookLM</a> when sources lead; Claude when synthesis leads.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a>
+        </div>
+      </div>
+
+      <div class="ref-row">
+        <div class="usecase"><span class="em">🎨</span><span class="txt">Custom UX and user-facing design</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile anthropic"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt=""></span>
+            <span class="name">Claude + frontend-design skill</span>
+          </div>
+          <p class="tool-desc">Claude is better for interface taste; the skill keeps output from going generic.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md" target="_blank" rel="noopener noreferrer">Skill</a>
+          <a class="pill" href="https://github.com/ek0212/agent-ready-repo-kit" target="_blank" rel="noopener noreferrer">Repo Kit</a>
+        </div>
+      </div>
+
+      <div class="ref-row">
+        <div class="usecase"><span class="em">🖼️</span><span class="txt">Images, visual ideation, custom GPTs</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile openai"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" alt=""></span>
+            <span class="name">ChatGPT</span>
+          </div>
+          <p class="tool-desc">Best image generation. Custom GPTs = reusable ChatGPT configs with your own instructions, knowledge files, and actions; share a link, no code needed.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a>
+          <a class="pill" href="https://help.openai.com/en/articles/8554397-creating-a-gpt" target="_blank" rel="noopener noreferrer">Custom GPT Docs</a>
+        </div>
+      </div>
+
+      <div class="ref-row" id="row-notebooklm">
+        <div class="usecase"><span class="em">📚</span><span class="txt">Learning, documents, podcasts</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile notebooklm"><img src="https://www.google.com/s2/favicons?domain=notebooklm.google.com&sz=64" alt=""></span>
+            <span class="name">NotebookLM</span>
+          </div>
+          <p class="tool-desc">Documents, books, papers; turns source packets into audio summaries.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a>
+        </div>
+      </div>
+
+      <div class="ref-row" id="row-apple">
+        <div class="usecase"><span class="em">🍎</span><span class="txt">Apple integrations and iMessage</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile claude"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" alt=""></span>
+            <span class="name">Claude Cowork</span>
+          </div>
+          <p class="tool-desc">Only assistant that natively delivers iMessage automations: runs locally on macOS and hooks the Messages database via the official iMessage plugin. Use it when the automation needs Apple-side reach (texts, Shortcuts, local files) that <a class="lk" href="#row-codex-automation">Codex's cloud sandbox</a> can't touch.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a>
+          <a class="pill" href="https://claude.com/plugins/imessage" target="_blank" rel="noopener noreferrer">iMessage Plugin</a>
+          <a class="pill" href="https://github.com/anthropics/claude-plugins-official/blob/main/external_plugins/imessage/README.md" target="_blank" rel="noopener noreferrer">Docs</a>
+        </div>
+      </div>
+
+      <div class="ref-row" id="row-codex-automation">
+        <div class="usecase"><span class="em">🔌</span><span class="txt">Scheduled automations and connectors</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile openai"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt=""></span>
+            <span class="name">Codex / ChatGPT</span>
+          </div>
+          <p class="tool-desc">ChatGPT side runs in OpenAI's cloud with permissive defaults, so scheduled tasks, web search, and connectors (Gmail, Drive, Calendar, GitHub, etc.) execute end-to-end without the per-action permission prompts you hit on a local agent. Codex CLI still runs locally with shell access when you need files. In practice these automations feel a lot more seamless than ones originating from <a class="lk" href="#row-apple">Claude Cowork</a>. Trade-off: no native iMessage or Apple Shortcuts delivery, use <a class="lk" href="#row-apple">Claude Cowork</a> for those.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://developers.openai.com/codex" target="_blank" rel="noopener noreferrer">Codex</a>
+          <a class="pill" href="https://developers.openai.com/codex/app/automations" target="_blank" rel="noopener noreferrer">Automations</a>
+          <a class="pill" href="https://help.openai.com/en/articles/11487775-connectors-in-chatgpt" target="_blank" rel="noopener noreferrer">Connectors</a>
+        </div>
+      </div>
+
+      <div class="ref-row">
+        <div class="usecase"><span class="em">📊</span><span class="txt">Quick presentations</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile gamma"><img src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" alt=""></span>
+            <span class="name">Gamma</span>
+          </div>
+          <p class="tool-desc">Fastest path from rough content to a presentable deck.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://gamma.app/" target="_blank" rel="noopener noreferrer">Gamma</a>
+        </div>
+      </div>
+
+      <div class="ref-row">
+        <div class="usecase"><span class="em">🚀</span><span class="txt">Project starts and stress tests</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile microsoft"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt=""></span>
+            <span class="name">Clarity Agent</span>
+          </div>
+          <p class="tool-desc">Scaffolding, project init, and edge-case passes once a project exists.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://github.com/microsoft/clarity-agent" target="_blank" rel="noopener noreferrer">Clarity</a>
+        </div>
+      </div>
+
+      <div class="ref-row">
+        <div class="usecase"><span class="em">🎙️</span><span class="txt">Speech to text</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile wispr"><img src="https://www.google.com/s2/favicons?domain=wispr.ai&sz=64" alt=""></span>
+            <span class="name">Wispr Flow</span>
+          </div>
+          <p class="tool-desc">Dictation when speaking is faster than typing.</p>
+        </div>
+        <div class="links">
+          <a class="pill" href="https://www.wispr.ai/" target="_blank" rel="noopener noreferrer">Wispr</a>
+        </div>
+      </div>
+
+      <div class="ref-row">
+        <div class="usecase"><span class="em">✍️</span><span class="txt">Personal methods</span></div>
+        <div>
+          <div class="tool-head">
+            <span class="icon-tile none" aria-hidden="true"></span>
+            <span class="name">Original workflows</span>
+          </div>
+          <p class="tool-desc"><strong>Email drafting:</strong> write yourself using your own style rules and constraints. Keep it human.</p>
+          <p class="tool-desc"><strong>Meeting notes:</strong> use whatever is native to your meeting platform.</p>
+          <p class="tool-desc"><strong>Travel planning:</strong> query Claude, ChatGPT, and Gemini, then compare their top site recommendations.</p>
+          <p class="tool-desc"><strong>Recipe portion adjustment:</strong> only useful for adjusting portions or scanning items. Make your own recipes.</p>
+        </div>
+        <div class="links"></div>
       </div>
     </section>
 
-    <section id="timeline">
-      <div class="section-head">
-        <h2>Timeline</h2>
+    <!-- Timeline -->
+    <section class="panel" id="panel-timeline" role="tabpanel" aria-labelledby="tab-timeline" hidden>
+      <h1 class="sec-title">Timeline</h1>
+      <p class="sec-lede">How the default coding stack shifted — and where it landed.</p>
+      <div class="tl-grid">
+        <div class="tl-card"><div class="tl-when">Late 2022</div><div class="tl-what">ChatGPT becomes the default</div></div>
+        <div class="tl-card"><div class="tl-when">Feb 2026</div><div class="tl-what">Claude Opus 4.6, 1M context</div></div>
+        <div class="tl-card"><div class="tl-when">May 2026</div><div class="tl-what">Codex + GPT-5.5 takes coding</div></div>
+        <div class="tl-card"><div class="tl-when">Now</div><div class="tl-what">Alternate Opus latest + Codex for coding</div></div>
       </div>
-      <div class="timeline-strip">
-        <article class="timeline-step">
-          <time>Late 2022</time>
-          <h3>ChatGPT becomes the default</h3>
-        </article>
-        <article class="timeline-step">
-          <time>Feb 2026</time>
-          <h3>Claude Opus 4.6, 1M context</h3>
-        </article>
-        <article class="timeline-step">
-          <time>May 2026</time>
-          <h3>Codex + GPT-5.5 takes coding</h3>
-        </article>
-        <article class="timeline-step">
-          <time>Now</time>
-          <h3>Alternate Opus latest + Codex for coding</h3>
-        </article>
+      <div class="tl-rail">
+        <span class="node"></span><span class="seg"></span>
+        <span class="node"></span><span class="seg"></span>
+        <span class="node"></span><span class="seg"></span>
+        <span class="node"></span>
       </div>
     </section>
 
-    <section id="notes">
-      <div class="section-head">
-        <h2>Notes</h2>
-      </div>
-      <div class="note-grid">
-        <article class="note-card">
+    <!-- Notes -->
+    <section class="panel" id="panel-notes" role="tabpanel" aria-labelledby="tab-notes" hidden>
+      <h1 class="sec-title">Notes</h1>
+      <p class="sec-lede">Pricing, harness picks, benchmarks, and a couple of setup tricks.</p>
+      <div class="notes-grid">
+        <article class="note">
           <h3>Opus pricing</h3>
-          <p>Opus 4.6 / 4.7 / 4.8 all priced at $5 input / $25 output per million tokens. Confirm current rates on each release: <a href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noopener noreferrer">4.8</a>, <a href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank" rel="noopener noreferrer">4.7</a>, <a href="https://www.anthropic.com/news/claude-opus-4-6" target="_blank" rel="noopener noreferrer">4.6</a>.</p>
+          <p>Opus 4.6 / 4.7 / 4.8 all priced at $5 input / $25 output per million tokens. Confirm current rates on each release: <a class="lk" href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noopener noreferrer">4.8</a>, <a class="lk" href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank" rel="noopener noreferrer">4.7</a>, <a class="lk" href="https://www.anthropic.com/news/claude-opus-4-6" target="_blank" rel="noopener noreferrer">4.6</a>.</p>
         </article>
-        <article class="note-card">
+        <article class="note">
           <h3>GPT / Codex pricing</h3>
-          <p>GPT-5.5 and Codex rates change frequently across tiers and reasoning effort. Check the <a href="https://platform.openai.com/docs/pricing" target="_blank" rel="noopener noreferrer">OpenAI pricing page</a> or your <a href="https://platform.openai.com/account/billing" target="_blank" rel="noopener noreferrer">billing dashboard</a> for the current numbers.</p>
+          <p>GPT-5.5 and Codex rates change frequently across tiers and reasoning effort. Check the <a class="lk" href="https://platform.openai.com/docs/pricing" target="_blank" rel="noopener noreferrer">OpenAI pricing page</a> or your <a class="lk" href="https://platform.openai.com/account/billing" target="_blank" rel="noopener noreferrer">billing dashboard</a> for the current numbers.</p>
         </article>
-        <article class="note-card">
+        <article class="note">
           <h3>CLI &gt; app for Claude</h3>
           <p>Claude Code CLI beats the desktop app: real shell access, repo context, hooks, and the agent loop are first-class. The app is fine for chat, but coding work lives in the terminal.</p>
         </article>
-        <article class="note-card">
+        <article class="note">
           <h3>Harness matters</h3>
           <p>Model is only half the choice. For getting a project off the ground end-to-end without large functionality bugs, Codex harness + GPT latest high is the most reliable path. Opus latest in Claude Code CLI (the CLI, not the desktop app) takes over once the work is deep repo reasoning.</p>
         </article>
-        <article class="note-card">
+        <article class="note">
           <h3>Benchmarks worth trusting</h3>
-          <p>For real datapoints on how models actually perform on code, check <a href="https://www.swebench.com/" target="_blank" rel="noopener noreferrer">SWE-bench</a> and <a href="https://deepswe.net/" target="_blank" rel="noopener noreferrer">DeepSWE bench</a>. Vendor charts are marketing; SWE-bench-style harness evals show whether the model lands a working patch.</p>
+          <p>For real datapoints on how models actually perform on code, check <a class="lk" href="https://www.swebench.com/" target="_blank" rel="noopener noreferrer">SWE-bench</a> and <a class="lk" href="https://deepswe.net/" target="_blank" rel="noopener noreferrer">DeepSWE bench</a>. Vendor charts are marketing; SWE-bench-style harness evals show whether the model lands a working patch.</p>
         </article>
-        <article class="note-card">
+        <article class="note">
           <h3>Research split</h3>
-          <p>Use <a href="#row-notebooklm">NotebookLM</a> when you already have the source material (PDFs, papers, transcripts) and want grounded answers and audio summaries from it. Use <a href="#row-writing-claude">Claude</a> when the work is open-ended thinking, synthesis across topics, or judgment calls where no fixed source set exists.</p>
+          <p>Use <a class="lk" href="#row-notebooklm">NotebookLM</a> when you already have the source material (PDFs, papers, transcripts) and want grounded answers and audio summaries from it. Use <a class="lk" href="#row-writing-claude">Claude</a> when the work is open-ended thinking, synthesis across topics, or judgment calls where no fixed source set exists.</p>
         </article>
-        <article class="note-card">
+        <article class="note">
           <h3>Hotkey: <code>cc</code> for Claude Code</h3>
           <p>Set up a one-letter shortcut so typing <code>cc</code> in any Terminal tab launches Claude Code in the current directory.</p>
           <ol>
             <li>Open Terminal (or iTerm) on macOS.</li>
             <li>Open your shell config in a text editor: <code>open -e ~/.zshrc</code> (or use <code>nano ~/.zshrc</code> in the terminal).</li>
-            <li>Add this line at the bottom of the file and save: <br><code>alias cc='claude --permission-mode auto'</code></li>
-            <li>Reload the config in your current shell: <code>source ~/.zshrc</code> (or just open a new Terminal tab).</li>
-            <li>Now <code>cd</code> into any project folder and run <code>cc</code> to start Claude Code.</li>
+            <li>Add this line at the bottom of the file and save: <code>alias cc='claude --permission-mode auto'</code></li>
+            <li>Reload the config in your current shell: <code>source ~/.zshrc</code> (or open a new Terminal tab).</li>
+            <li><code>cd</code> into any project folder and run <code>cc</code> to start Claude Code.</li>
           </ol>
           <p><strong>Why <code>--permission-mode auto</code>:</strong> auto-approves safe, reversible operations (reads, edits in the project) but still prompts before irreversible or risky actions (deleting files, running shell commands outside the repo, network calls). Safer default than <code>--dangerously-skip-permissions</code>, which skips every prompt.</p>
         </article>
       </div>
     </section>
 
-    <section id="creators">
-      <div class="section-head">
-        <h2>Creators</h2>
-      </div>
-      <div class="creator-grid">
-        <article class="creator-card"><h3>Theo</h3><p>t3.gg / T3 Chat</p><a href="https://www.youtube.com/@t3dotgg" target="_blank" rel="noopener noreferrer">Open</a></article>
-        <article class="creator-card"><h3>John Kim</h3><p>Meta engineer</p><a href="https://www.youtube.com/@johnkimlife" target="_blank" rel="noopener noreferrer">Open</a></article>
-        <article class="creator-card"><h3>Matt Wolfe</h3><p>AI roundups</p><a href="https://www.youtube.com/@mreflow" target="_blank" rel="noopener noreferrer">Open</a></article>
-        <article class="creator-card"><h3>Karpathy</h3><p>Blog / X</p><a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">Open</a></article>
-        <article class="creator-card"><h3>Tina Huang</h3><p>AI learning</p><a href="https://www.youtube.com/@TinaHuang1" target="_blank" rel="noopener noreferrer">Open</a></article>
+    <!-- Creators -->
+    <section class="panel" id="panel-creators" role="tabpanel" aria-labelledby="tab-creators" hidden>
+      <h1 class="sec-title">Creators</h1>
+      <p class="sec-lede">People worth following for what actually ships.</p>
+      <div class="cr-grid">
+        <article class="cr-card">
+          <div class="cr-avatar"><img src="https://unavatar.io/youtube/t3dotgg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=t3.gg&sz=128'"></div>
+          <div class="cr-name">Theo</div><div class="cr-role">t3.gg / T3 Chat</div>
+          <a class="cr-open" href="https://www.youtube.com/@t3dotgg" target="_blank" rel="noopener noreferrer">Open</a>
+        </article>
+        <article class="cr-card">
+          <div class="cr-avatar"><img src="https://unavatar.io/youtube/johnkimlife" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=youtube.com&sz=128'"></div>
+          <div class="cr-name">John Kim</div><div class="cr-role">Meta engineer</div>
+          <a class="cr-open" href="https://www.youtube.com/@johnkimlife" target="_blank" rel="noopener noreferrer">Open</a>
+        </article>
+        <article class="cr-card">
+          <div class="cr-avatar"><img src="https://unavatar.io/youtube/mreflow" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=youtube.com&sz=128'"></div>
+          <div class="cr-name">Matt Wolfe</div><div class="cr-role">AI roundups</div>
+          <a class="cr-open" href="https://www.youtube.com/@mreflow" target="_blank" rel="noopener noreferrer">Open</a>
+        </article>
+        <article class="cr-card">
+          <div class="cr-avatar"><img src="https://unavatar.io/x/karpathy" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=karpathy.ai&sz=128'"></div>
+          <div class="cr-name">Karpathy</div><div class="cr-role">Blog / X</div>
+          <a class="cr-open" href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">Open</a>
+        </article>
+        <article class="cr-card">
+          <div class="cr-avatar"><img src="https://unavatar.io/youtube/tinahuang1" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=youtube.com&sz=128'"></div>
+          <div class="cr-name">Tina Huang</div><div class="cr-role">AI learning</div>
+          <a class="cr-open" href="https://www.youtube.com/@TinaHuang1" target="_blank" rel="noopener noreferrer">Open</a>
+        </article>
       </div>
     </section>
+
   </main>
 
-  <footer>Curated by Eve - personal guide, not sponsored</footer>
+  <footer>Curated by Eve · personal guide, not sponsored</footer>
 </div>
+
+<script>
+(function(){
+  var TABS = [
+    {id:'reference', color:'#B25C3A', tint:'#ECD9CB'},
+    {id:'timeline',  color:'#7E97D2', tint:'#DFE5F3'},
+    {id:'notes',     color:'#969637', tint:'#E8E7C7'},
+    {id:'creators',  color:'#DC8A6B', tint:'#F4DFD1'},
+  ];
+  var root = document.documentElement;
+  var tabButtons = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = {};
+  TABS.forEach(function(t){ panels[t.id] = document.getElementById('panel-' + t.id); });
+
+  function activate(id, opts){
+    opts = opts || {};
+    var meta = TABS.find(function(t){ return t.id === id; }) || TABS[0];
+    tabButtons.forEach(function(btn, i){
+      var on = btn.dataset.tab === meta.id;
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-selected', on ? 'true' : 'false');
+      btn.style.zIndex = on ? 20 : (TABS.length - i);
+    });
+    TABS.forEach(function(t){
+      var p = panels[t.id];
+      if (!p) return;
+      if (t.id === meta.id){
+        p.hidden = false;
+        // restart entrance animation
+        p.style.animation = 'none';
+        // force reflow
+        // eslint-disable-next-line no-unused-expressions
+        p.offsetHeight;
+        p.style.animation = '';
+      } else {
+        p.hidden = true;
+      }
+    });
+    root.style.setProperty('--accent', meta.color);
+    root.style.setProperty('--accent-tint', meta.tint);
+    try { localStorage.setItem('act-tab', meta.id); } catch(e){}
+    if (!opts.skipHash){
+      if (location.hash.replace('#','') !== meta.id){
+        history.replaceState(null, '', '#' + meta.id);
+      }
+    }
+  }
+
+  // initial pick: hash > localStorage > first
+  var initial = (location.hash || '').replace('#','');
+  if (!TABS.some(function(t){ return t.id === initial; })){
+    try { initial = localStorage.getItem('act-tab') || ''; } catch(e){ initial = ''; }
+  }
+  if (!TABS.some(function(t){ return t.id === initial; })) initial = TABS[0].id;
+  activate(initial, {skipHash:true});
+
+  tabButtons.forEach(function(btn){
+    btn.addEventListener('click', function(){ activate(btn.dataset.tab); });
+  });
+
+  // Allow in-content anchors (e.g. #row-codex-prototyping) to jump into Reference
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var id = href.slice(1);
+    if (!id) return;
+    var tabMatch = TABS.find(function(t){ return t.id === id; });
+    if (tabMatch){
+      e.preventDefault();
+      activate(tabMatch.id);
+      return;
+    }
+    var target = document.getElementById(id);
+    if (target && target.closest('.panel')){
+      var panelEl = target.closest('.panel');
+      var panelId = panelEl.id.replace('panel-','');
+      if (panelId && panels[panelId] && panels[panelId].hidden){
+        e.preventDefault();
+        activate(panelId);
+        setTimeout(function(){
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }, 50);
+      }
+    }
+  });
+
+  // arrow-key tab nav
+  window.addEventListener('keydown', function(e){
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+    var current = TABS.findIndex(function(t){ return !panels[t.id].hidden; });
+    if (current < 0) current = 0;
+    var next = e.key === 'ArrowRight'
+      ? (current + 1) % TABS.length
+      : (current - 1 + TABS.length) % TABS.length;
+    activate(TABS[next].id);
+  });
+
+  // respond to manual hash changes (back/forward)
+  window.addEventListener('hashchange', function(){
+    var id = location.hash.replace('#','');
+    if (TABS.some(function(t){ return t.id === id; })) activate(id, {skipHash:true});
+  });
+})();
+</script>
 </body>
 </html>
